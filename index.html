@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="el" class="dark">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix Promo Studio v2 | PHX Creator Suite</title>
-    <!-- Tailwind CSS -->
+    <title>Phoenix Promo Studio v3 | Phoenix Force</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Rajdhani -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;900&family=Montserrat:wght@700;900&family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Rajdhani', 'sans-serif'],
-                    },
                     colors: {
-                        phx: {
-                            black: '#0b0b0e',
-                            panel: '#141419',
-                            card: '#1b1b22',
-                            orange: '#FF8C00',
+                        phoenix: {
                             red: '#FF3B30',
-                            gold: '#F59E0B',
-                            purple: '#9333EA',
-                            blue: '#0EA5E9'
+                            500: '#FF8C00',
+                            600: '#E67E22',
+                            dark: '#08090C',
+                            panel: '#111319'
                         }
                     }
                 }
@@ -37,1482 +26,1061 @@
         }
     </script>
     <style>
-        body {
-            background-color: #0b0b0e;
-            color: #f4f4f5;
-            font-family: 'Inter', sans-serif;
-        }
-        /* Glassmorphism Panels */
-        .glass-panel {
-            background: rgba(20, 20, 25, 0.88);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        /* Custom Range Sliders */
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            background: #27272a;
-            height: 6px;
-            border-radius: 999px;
-            outline: none;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #FF8C00;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
-            transition: transform 0.15s ease;
-        }
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0b0e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF8C00;
-        }
-        /* Canvas Preview Stage */
-        .canvas-stage {
-            background-color: #070709;
-            background-image: 
-                radial-gradient(circle at center, rgba(255, 140, 0, 0.08) 0%, transparent 72%),
-                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 28px 28px, 28px 28px;
-        }
-        #promoCanvas {
-            max-width: 100%;
-            max-height: 78vh;
-            width: auto;
-            height: auto;
-            box-shadow: 0 25px 65px -15px rgba(0, 0, 0, 0.95), 0 0 45px rgba(255, 140, 0, 0.14);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #08090C; color: #F3F4F6; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .glass { background: rgba(17, 19, 25, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        input[type="range"] { accent-color: #FF8C00; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0B0C10; }
+        ::-webkit-scrollbar-thumb { background: #2A2E39; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF8C00; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-phx-orange selection:text-white">
+<body class="min-h-screen flex flex-col selection:bg-phoenix-500 selection:text-white">
 
-    <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-30 glass-panel border-b border-zinc-800/90 px-4 sm:px-6 lg:px-8 py-3.5">
-        <div class="max-w-[1680px] mx-auto flex flex-wrap items-center justify-between gap-4">
-            <!-- Brand Identity -->
-            <div class="flex items-center gap-3.5">
-                <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-phx-orange to-phx-red p-[2px] shadow-[0_0_22px_rgba(255,140,0,0.4)]">
-                    <div class="w-full h-full bg-phx-black rounded-[10px] flex items-center justify-center overflow-hidden">
-                        <img id="headerLogoImg" src="logos/PHX.png" alt="PHX" class="w-9 h-9 object-contain" onerror="this.style.display='none'; document.getElementById('headerFallbackSvg').classList.remove('hidden');">
-                        <svg id="headerFallbackSvg" class="hidden w-6 h-6 text-phx-orange" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L15 8.5L22 9.3L16.8 14L18.3 21L12 17.4L5.7 21L7.2 14L2 9.3L9 8.5L12 2Z"/>
-                        </svg>
-                    </div>
+    <!-- Top Bar -->
+    <header class="glass border-b border-gray-800/80 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-phoenix-500 to-phoenix-red flex items-center justify-center font-orbitron font-black text-white shadow-[0_0_15px_rgba(255,140,0,0.5)]">
+                    PHX
                 </div>
                 <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="text-lg sm:text-xl font-black tracking-wider text-white uppercase">PHOENIX <span class="text-phx-orange">PROMO STUDIO</span></h1>
-                        <span class="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded bg-phx-red/15 text-phx-red border border-phx-red/30">v2.0</span>
-                    </div>
-                    <p class="text-xs text-zinc-400">Phoenix Force (PHX) // Esports Banner, Collab & Social Generator</p>
+                    <h1 class="font-orbitron font-black text-base sm:text-lg tracking-wider text-white flex items-center gap-2">
+                        PHOENIX <span class="text-phoenix-500">PROMO STUDIO</span>
+                        <span class="text-[10px] bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-2 py-0.5 rounded font-sans font-bold">v3 ULTIMATE</span>
+                    </h1>
+                    <p class="text-[11px] text-gray-400 hidden sm:block">Custom Banners, Thumbnails & Weekly Schedules for Phoenix Force</p>
                 </div>
             </div>
-
-            <!-- Quick Action Toolbar -->
-            <div class="flex flex-wrap items-center gap-2.5">
-                <button id="copyImageBtn" type="button" class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs sm:text-sm font-bold border border-zinc-700 hover:border-phx-orange transition flex items-center gap-2 active:scale-95">
-                    <svg class="w-4 h-4 text-phx-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                    <span>Copy Image (Clipboard)</span>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="copyCaptionBtn" class="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <span>📝</span> <span class="hidden md:inline">Copy Caption</span>
                 </button>
-
-                <button id="copyCaptionBtn" type="button" class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs sm:text-sm font-bold border border-zinc-700 hover:border-phx-orange transition flex items-center gap-2 active:scale-95">
-                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                    <span>Copy Caption</span>
+                <button id="copyImgBtn" class="bg-gray-800 hover:bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <span>📋</span> <span id="copyImgText">Copy Image</span>
                 </button>
-
-                <button id="downloadBtn" type="button" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-phx-orange to-phx-red hover:brightness-110 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase shadow-[0_0_25px_rgba(255,59,48,0.45)] transition transform active:scale-95 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    <span>Download PNG</span>
+                <button id="downloadBtn" class="bg-gradient-to-r from-phoenix-500 to-phoenix-red hover:opacity-95 text-white px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-black tracking-wide shadow-[0_0_20px_rgba(255,140,0,0.45)] transition transform hover:scale-[1.02] flex items-center gap-1.5">
+                    <span>⬇</span> Download PNG
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Non-Blocking Toast Notification -->
-    <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden transform transition-all duration-300">
-        <div class="glass-panel border border-phx-orange/70 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-phx-orange animate-ping"></span>
-            <p id="toastMessage" class="text-sm font-semibold"></p>
-        </div>
-    </div>
+    <!-- Main Workspace -->
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-    <!-- Main Workspace Grid -->
-    <main class="flex-grow max-w-[1680px] w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-        
-        <!-- LEFT PANEL: Studio Controls -->
-        <section class="lg:col-span-5 xl:col-span-4 space-y-5 glass-panel rounded-2xl p-5 sm:p-6 shadow-2xl h-fit max-h-[86vh] overflow-y-auto">
+        <!-- Left Controls Panel -->
+        <div class="lg:col-span-5 glass rounded-2xl p-5 space-y-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
             
-            <!-- 1. Format Selector -->
-            <div class="space-y-2.5">
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-zinc-400">1. Διαστάσεις / Format</span>
-                    <span id="resolutionBadge" class="text-xs text-phx-orange font-mono font-bold">1080 × 1920 PX</span>
+            <!-- Mode Switcher: Single/Collab vs Weekly Schedule -->
+            <div class="grid grid-cols-2 gap-2 p-1 bg-black/60 rounded-xl border border-gray-800">
+                <button type="button" id="modeStreamBtn" class="py-2 rounded-lg text-xs font-black uppercase tracking-wider bg-gradient-to-r from-phoenix-500 to-phoenix-red text-white shadow">
+                    🔥 Stream / Event
+                </button>
+                <button type="button" id="modeScheduleBtn" class="py-2 rounded-lg text-xs font-black uppercase tracking-wider text-gray-400 hover:text-white transition">
+                    📅 Weekly Schedule
+                </button>
+            </div>
+
+            <!-- 1. Canvas Format & Template -->
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">1. Format</label>
+                    <select id="formatSelect" class="w-full bg-black/50 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                        <option value="story">IG Story / TikTok (1080×1920)</option>
+                        <option value="post">Instagram Post (1080×1080)</option>
+                        <option value="banner">Twitch / OBS (1920×1080)</option>
+                        <option value="youtube">YouTube Thumb (1280×720)</option>
+                        <option value="discord">Discord Event (960×540)</option>
+                    </select>
                 </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <button type="button" data-format="story" class="format-btn p-3 rounded-xl border border-phx-orange bg-phx-orange/15 text-white text-left transition flex flex-col justify-between gap-1 shadow-[0_0_15px_rgba(255,140,0,0.2)]">
-                        <span class="text-xs font-extrabold">Story / TikTok</span>
-                        <span class="text-[10px] text-zinc-300 font-mono">1080×1920</span>
-                    </button>
-                    <button type="button" data-format="post" class="format-btn p-3 rounded-xl border border-zinc-800 bg-phx-card/80 hover:border-zinc-600 text-zinc-300 text-left transition flex flex-col justify-between gap-1">
-                        <span class="text-xs font-extrabold">IG / Discord</span>
-                        <span class="text-[10px] text-zinc-400 font-mono">1080×1080</span>
-                    </button>
-                    <button type="button" data-format="banner" class="format-btn p-3 rounded-xl border border-zinc-800 bg-phx-card/80 hover:border-zinc-600 text-zinc-300 text-left transition flex flex-col justify-between gap-1">
-                        <span class="text-xs font-extrabold">Twitch / OBS</span>
-                        <span class="text-[10px] text-zinc-400 font-mono">1920×1080</span>
-                    </button>
+                <div id="templateWrapper">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">2. Template</label>
+                    <select id="templateSelect" class="w-full bg-black/50 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                        <option value="live">🔴 LIVE NOW</option>
+                        <option value="starting">⏳ STARTING SOON</option>
+                        <option value="tournament">🏆 TOURNAMENT / EVENT</option>
+                        <option value="welcome">🎉 NEW PHOENIX MEMBER</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- 2. Template / Vibe Selector -->
-            <div class="space-y-2.5 pt-3 border-t border-zinc-800/90">
-                <span class="block text-xs font-extrabold uppercase tracking-wider text-zinc-400">2. Event Template / Vibe</span>
+            <!-- STREAM / EVENT CONTROLS -->
+            <div id="streamControls" class="space-y-4">
+                <!-- Creator & Collab Toggle -->
+                <div class="border-t border-gray-800/80 pt-3">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">3. Creator & Collab</label>
+                        <label class="inline-flex items-center gap-1.5 cursor-pointer text-xs font-bold text-phoenix-500">
+                            <input type="checkbox" id="collabToggle" class="rounded accent-phoenix-500 w-3.5 h-3.5">
+                            <span>Dual / Collab Mode</span>
+                        </label>
+                    </div>
+                    <select id="streamerSelect" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                        <option value="Kill3rGuy94">Kill3rGuy94 (Leader & Founder)</option>
+                        <option value="YipYipMan_">YipYipMan_ (Streamers Manager)</option>
+                        <option value="YioGki">YioGki (Creator)</option>
+                        <option value="catgamer_tv">catgamer_tv (Creator)</option>
+                        <option value="CreepyPuppet_Tv">CreepyPuppet_Tv (Creator)</option>
+                        <option value="FenChris">FenChris (Creator)</option>
+                        <option value="Ghost_R4in">Ghost_R4in (Creator)</option>
+                        <option value="demon_gekkouga">demon_gekkouga (Creator)</option>
+                    </select>
+
+                    <!-- Second Creator -->
+                    <div id="collabStreamerBox" class="hidden mt-2">
+                        <select id="streamer2Select" class="w-full bg-black/50 border border-phoenix-500/50 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                            <option value="YipYipMan_">× YipYipMan_ (Streamers Manager)</option>
+                            <option value="Kill3rGuy94">× Kill3rGuy94 (Leader & Founder)</option>
+                            <option value="YioGki">× YioGki (Creator)</option>
+                            <option value="catgamer_tv">× catgamer_tv (Creator)</option>
+                            <option value="CreepyPuppet_Tv">× CreepyPuppet_Tv (Creator)</option>
+                            <option value="FenChris">× FenChris (Creator)</option>
+                            <option value="Ghost_R4in">× Ghost_R4in (Creator)</option>
+                            <option value="demon_gekkouga">× demon_gekkouga (Creator)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Texts & Extra Callout -->
+                <div class="border-t border-gray-800/80 pt-3 space-y-2.5">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400">4. Κείμενα, Παιχνίδι & Extra Callout</label>
+                    <input type="text" id="badgeInput" value="LIVE NOW" placeholder="Top Badge" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                    <input type="text" id="titleInput" value="RANKED GRIND & CHILL" placeholder="Κύριος Τίτλος" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                    <input type="text" id="calloutInput" value="GIVEAWAYS • CUSTOM GAMES • GOOD VIBES" placeholder="Extra Promo Line (προαιρετικό)" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="gameInput" value="League of Legends" placeholder="Παιχνίδι" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                        <input type="text" id="timeInput" value="ΣΗΜΕΡΑ • 21:00" placeholder="Ώρα / Μέρα" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                    </div>
+                    <!-- Quick Game Tag Presets -->
+                    <div class="flex flex-wrap gap-1.5 pt-0.5">
+                        <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="League of Legends">LoL</button>
+                        <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="AION2">AION2</button>
+                        <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="Valorant">Valorant</button>
+                        <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="Just Chatting">Just Chatting</button>
+                        <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="Variety Gaming">Variety</button>
+                    </div>
+                    <input type="text" id="linkInput" value="twitch.tv/kill3rguy94" placeholder="Stream Link" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                </div>
+
+                <!-- Avatar Scale & Position Sliders -->
+                <div class="border-t border-gray-800/80 pt-3 space-y-2">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400">5. Μέγεθος & Θέση Avatar</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                                <span>Avatar Scale</span>
+                                <span id="avatarScaleVal" class="text-phoenix-500 font-bold">100%</span>
+                            </div>
+                            <input type="range" id="avatarScaleSlider" min="60" max="150" value="100" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                                <span>Vertical Offset</span>
+                                <span id="avatarOffsetVal" class="text-phoenix-500 font-bold">0px</span>
+                            </div>
+                            <input type="range" id="avatarOffsetSlider" min="-150" max="150" value="0" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEEKLY SCHEDULE CONTROLS -->
+            <div id="scheduleControls" class="hidden space-y-3 border-t border-gray-800/80 pt-3">
+                <div class="flex items-center justify-between">
+                    <label class="text-[11px] font-bold uppercase tracking-wider text-phoenix-500">Εβδομαδιαίο Πρόγραμμα (έως 7 γραμμές)</label>
+                    <button type="button" id="addSlotBtn" class="text-[11px] bg-phoenix-500/20 hover:bg-phoenix-500/30 text-phoenix-500 border border-phoenix-500/40 px-2.5 py-1 rounded font-bold transition">+ Προσθήκη</button>
+                </div>
+                <input type="text" id="schedTitleInput" value="WEEKLY STREAM SCHEDULE" placeholder="Τίτλος Προγράμματος" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                <input type="text" id="schedSubtitleInput" value="PHOENIX FORCE ROSTER • ALL TIMES GREECE (EET)" placeholder="Υπότιτλος / Εβδομάδα" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                <div id="scheduleRowsContainer" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- 6. Typography, Colors & Glow -->
+            <div class="border-t border-gray-800/80 pt-3 space-y-2.5">
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400">6. Font, Χρώμα & Neon Glow</label>
                 <div class="grid grid-cols-2 gap-2">
-                    <button type="button" data-template="live" class="template-btn p-2.5 rounded-xl border border-phx-red bg-phx-red/15 text-white text-xs font-bold text-left transition flex items-center gap-2">
-                        <span>🔴</span><span>LIVE NOW</span>
-                    </button>
-                    <button type="button" data-template="schedule" class="template-btn p-2.5 rounded-xl border border-zinc-800 bg-phx-card/80 hover:border-zinc-600 text-zinc-300 text-xs font-bold text-left transition flex items-center gap-2">
-                        <span>📅</span><span>WEEKLY SCHEDULE</span>
-                    </button>
-                    <button type="button" data-template="tournament" class="template-btn p-2.5 rounded-xl border border-zinc-800 bg-phx-card/80 hover:border-zinc-600 text-zinc-300 text-xs font-bold text-left transition flex items-center gap-2">
-                        <span>🏆</span><span>TOURNAMENT</span>
-                    </button>
-                    <button type="button" data-template="welcome" class="template-btn p-2.5 rounded-xl border border-zinc-800 bg-phx-card/80 hover:border-zinc-600 text-zinc-300 text-xs font-bold text-left transition flex items-center gap-2">
-                        <span>🎉</span><span>NEW MEMBER</span>
-                    </button>
+                    <div>
+                        <span class="block text-[10px] text-gray-400 mb-1">Γραμματοσειρά Τίτλου</span>
+                        <select id="fontSelect" class="w-full bg-black/50 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
+                            <option value="Orbitron">Orbitron (Esports Sci-Fi)</option>
+                            <option value="Anton">Anton (Bold Impact)</option>
+                            <option value="Rajdhani">Rajdhani (Tactical Pro)</option>
+                            <option value="Montserrat">Montserrat (Clean Modern)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-400 mb-1">Theme Accent Color</span>
+                        <div class="flex items-center gap-1.5">
+                            <button type="button" class="color-swatch w-6 h-6 rounded-full border-2 border-white" style="background:#FF8C00" data-accent="#FF8C00" data-secondary="#FF3B30" title="Phoenix Fire"></button>
+                            <button type="button" class="color-swatch w-6 h-6 rounded-full border border-gray-600" style="background:#FF2A55" data-accent="#FF2A55" data-secondary="#990024" title="Crimson Red"></button>
+                            <button type="button" class="color-swatch w-6 h-6 rounded-full border border-gray-600" style="background:#00E5FF" data-accent="#00E5FF" data-secondary="#0066FF" title="Electric Cyan"></button>
+                            <button type="button" class="color-swatch w-6 h-6 rounded-full border border-gray-600" style="background:#FFD700" data-accent="#FFD700" data-secondary="#FF8C00" title="Royal Gold"></button>
+                            <button type="button" class="color-swatch w-6 h-6 rounded-full border border-gray-600" style="background:#A855F7" data-accent="#A855F7" data-secondary="#EC4899" title="Neon Purple"></button>
+                            <input type="color" id="customColorPicker" value="#FF8C00" class="w-6 h-6 bg-transparent border-0 cursor-pointer" title="Custom Color">
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div>
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Title Size</span>
+                            <span id="titleSizeVal" class="text-phoenix-500 font-bold">100%</span>
+                        </div>
+                        <input type="range" id="titleSizeSlider" min="70" max="135" value="100" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Neon Glow</span>
+                            <span id="glowVal" class="text-phoenix-500 font-bold">60%</span>
+                        </div>
+                        <input type="range" id="glowSlider" min="0" max="100" value="60" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+                    </div>
                 </div>
             </div>
 
-            <!-- 3. Roster & Dual / Collab Stream Mode -->
-            <div class="space-y-3 pt-3 border-t border-zinc-800/90">
+            <!-- 7. Custom Background Upload + Sliders -->
+            <div class="border-t border-gray-800/80 pt-3 space-y-2.5">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-zinc-400">3. Roster & Collab Mode</span>
-                    <!-- Collab Toggle Switch -->
-                    <label class="inline-flex items-center gap-2 cursor-pointer select-none">
-                        <span class="text-[11px] font-bold text-phx-orange">Dual / Collab</span>
-                        <div class="relative">
-                            <input id="collabToggle" type="checkbox" class="sr-only peer">
-                            <div class="w-9 h-5 bg-zinc-800 rounded-full peer peer-checked:bg-phx-orange transition border border-zinc-700"></div>
-                            <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-4"></div>
-                        </div>
-                    </label>
+                    <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">7. Custom Background</label>
+                    <button type="button" id="clearBgBtn" class="hidden text-[11px] text-red-400 hover:text-red-300 font-semibold">✕ Αφαίρεση</button>
                 </div>
-
-                <!-- Creator 1 Selector & Custom Avatar -->
-                <div class="space-y-2 bg-phx-card/60 p-3 rounded-xl border border-zinc-800/80">
-                    <label for="creator1Select" class="block text-[11px] font-bold text-zinc-400">Streamer 1 (Primary)</label>
-                    <select id="creator1Select" class="w-full p-2.5 rounded-lg bg-phx-black border border-zinc-700 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-phx-orange transition"></select>
-                    <div class="flex items-center gap-2 pt-1">
-                        <label for="avatar1Upload" class="flex-1 cursor-pointer px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-dashed border-zinc-700 hover:border-phx-orange text-[11px] text-zinc-300 text-center transition truncate">
-                            <span id="avatar1Label">📷 Custom Avatar 1 (Auto Repo Logo)</span>
-                            <input id="avatar1Upload" type="file" accept="image/*" class="hidden">
-                        </label>
-                        <button id="clearAvatar1Btn" type="button" class="hidden px-2.5 py-1.5 rounded-lg bg-zinc-900 text-zinc-400 hover:text-phx-red border border-zinc-700 text-xs">✕</button>
-                    </div>
-                </div>
-
-                <!-- Creator 2 Selector (Shown in Dual / Collab Mode) -->
-                <div id="creator2Box" class="hidden space-y-2 bg-phx-card/60 p-3 rounded-xl border border-phx-orange/40">
-                    <label for="creator2Select" class="block text-[11px] font-bold text-phx-orange">Streamer 2 (Collab / Co-Stream)</label>
-                    <select id="creator2Select" class="w-full p-2.5 rounded-lg bg-phx-black border border-zinc-700 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-phx-orange transition"></select>
-                    <div class="flex items-center gap-2 pt-1">
-                        <label for="avatar2Upload" class="flex-1 cursor-pointer px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-dashed border-zinc-700 hover:border-phx-orange text-[11px] text-zinc-300 text-center transition truncate">
-                            <span id="avatar2Label">📷 Custom Avatar 2 (Auto Repo Logo)</span>
-                            <input id="avatar2Upload" type="file" accept="image/*" class="hidden">
-                        </label>
-                        <button id="clearAvatar2Btn" type="button" class="hidden px-2.5 py-1.5 rounded-lg bg-zinc-900 text-zinc-400 hover:text-phx-red border border-zinc-700 text-xs">✕</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Custom Background & Visual Controls -->
-            <div class="space-y-3 pt-3 border-t border-zinc-800/90">
-                <span class="block text-xs font-extrabold uppercase tracking-wider text-zinc-400">4. Custom Background & Glow</span>
+                <input type="file" id="bgUpload" accept="image/*" class="w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-phoenix-500/20 file:text-phoenix-500 hover:file:bg-phoenix-500/30 cursor-pointer">
                 
-                <div class="flex items-center gap-2">
-                    <label for="bgUpload" class="flex-1 cursor-pointer p-3 rounded-xl bg-phx-card hover:bg-zinc-800/90 border border-dashed border-zinc-600 hover:border-phx-orange text-center transition">
-                        <span class="text-xs font-bold text-zinc-200 block">🖼️ Ανέβασε Custom Background</span>
-                        <span id="bgFileName" class="text-[10px] text-zinc-400 block mt-0.5 truncate">Προεπιλογή: Phoenix Dark Embers Grid</span>
-                        <input id="bgUpload" type="file" accept="image/*" class="hidden">
-                    </label>
-                    <button id="clearBgBtn" type="button" title="Καθαρισμός Background" class="hidden px-3.5 py-4 rounded-xl bg-zinc-900 hover:bg-red-950/70 border border-zinc-700 text-zinc-300 hover:text-phx-red text-xs font-bold transition">
-                        Clear
-                    </button>
-                </div>
-
-                <!-- Darken Overlay & Blur Sliders -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-phx-card/50 p-3 rounded-xl border border-zinc-800/80">
+                <div class="grid grid-cols-2 gap-3 pt-1">
                     <div>
-                        <div class="flex justify-between text-[11px] mb-1.5">
-                            <span class="text-zinc-400 font-semibold">Darken Overlay</span>
-                            <span id="darkenVal" class="text-phx-orange font-mono font-bold">65%</span>
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Darken Overlay</span>
+                            <span id="darkenVal" class="text-phoenix-500 font-bold">65%</span>
                         </div>
-                        <input id="darkenSlider" type="range" min="0" max="95" value="65" class="w-full">
+                        <input type="range" id="darkenSlider" min="0" max="95" value="65" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
                     </div>
                     <div>
-                        <div class="flex justify-between text-[11px] mb-1.5">
-                            <span class="text-zinc-400 font-semibold">Background Blur</span>
-                            <span id="blurVal" class="text-phx-orange font-mono font-bold">3px</span>
+                        <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                            <span>Background Blur</span>
+                            <span id="blurVal" class="text-phoenix-500 font-bold">2px</span>
                         </div>
-                        <input id="blurSlider" type="range" min="0" max="20" value="3" class="w-full">
-                    </div>
-                </div>
-
-                <!-- Accent Glow Color Presets -->
-                <div>
-                    <span class="block text-[11px] text-zinc-400 font-semibold mb-1.5">Accent Glow Theme</span>
-                    <div class="grid grid-cols-4 gap-1.5">
-                        <button type="button" data-accent="orange" class="accent-btn p-2 rounded-lg border border-phx-orange bg-phx-orange/15 text-white text-[10px] font-bold flex items-center justify-center gap-1 transition">
-                            <span class="w-2.5 h-2.5 rounded-full bg-phx-orange"></span><span>Orange</span>
-                        </button>
-                        <button type="button" data-accent="red" class="accent-btn p-2 rounded-lg border border-zinc-800 bg-phx-card text-zinc-300 text-[10px] font-bold flex items-center justify-center gap-1 transition">
-                            <span class="w-2.5 h-2.5 rounded-full bg-phx-red"></span><span>Crimson</span>
-                        </button>
-                        <button type="button" data-accent="purple" class="accent-btn p-2 rounded-lg border border-zinc-800 bg-phx-card text-zinc-300 text-[10px] font-bold flex items-center justify-center gap-1 transition">
-                            <span class="w-2.5 h-2.5 rounded-full bg-phx-purple"></span><span>Purple</span>
-                        </button>
-                        <button type="button" data-accent="blue" class="accent-btn p-2 rounded-lg border border-zinc-800 bg-phx-card text-zinc-300 text-[10px] font-bold flex items-center justify-center gap-1 transition">
-                            <span class="w-2.5 h-2.5 rounded-full bg-phx-blue"></span><span>Blue</span>
-                        </button>
+                        <input type="range" id="blurSlider" min="0" max="20" value="2" class="w-full h-1.5 bg-gray-800 rounded-lg cursor-pointer">
                     </div>
                 </div>
             </div>
 
-            <!-- 5. Text & Details Inputs -->
-            <div class="space-y-3 pt-3 border-t border-zinc-800/90">
-                <span class="block text-xs font-extrabold uppercase tracking-wider text-zinc-400">5. Κείμενα & Λεπτομέρειες</span>
-                
-                <div>
-                    <label for="badgeInput" class="block text-[11px] text-zinc-400 mb-1">Top Status Badge</label>
-                    <input id="badgeInput" type="text" value="🔴 LIVE NOW ON TWITCH" maxlength="36" class="w-full p-2.5 rounded-xl bg-phx-card border border-zinc-700 text-white text-xs font-bold focus:outline-none focus:border-phx-orange transition">
-                </div>
-
-                <div>
-                    <label for="headlineInput" class="block text-[11px] text-zinc-400 mb-1">Κύριος Τίτλος (Multi-line supported)</label>
-                    <textarea id="headlineInput" rows="2" maxlength="65" class="w-full p-2.5 rounded-xl bg-phx-card border border-zinc-700 text-white text-sm font-extrabold focus:outline-none focus:border-phx-orange transition resize-none">RANKED GRIND
-TO MASTER!</textarea>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <!-- 8. Custom Logos Override -->
+            <div class="border-t border-gray-800/80 pt-3">
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-2">8. Custom Logos (Προαιρετικό Override)</label>
+                <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <label for="gameInput" class="block text-[11px] text-zinc-400 mb-1">Game / Category</label>
-                        <input id="gameInput" type="text" value="VARIETY / GAMING" maxlength="30" class="w-full p-2.5 rounded-xl bg-phx-card border border-zinc-700 text-white text-xs font-semibold focus:outline-none focus:border-phx-orange transition">
+                        <span class="block text-[10px] text-gray-400 mb-1">Team Logo (PHX.png)</span>
+                        <input type="file" id="teamLogoUpload" accept="image/*" class="w-full text-[11px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[11px] file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
                     </div>
                     <div>
-                        <label for="timeInput" class="block text-[11px] text-zinc-400 mb-1">Date & Time</label>
-                        <input id="timeInput" type="text" value="ΣΗΜΕΡΑ • 21:00" maxlength="30" class="w-full p-2.5 rounded-xl bg-phx-card border border-zinc-700 text-white text-xs font-semibold focus:outline-none focus:border-phx-orange transition">
+                        <span class="block text-[10px] text-gray-400 mb-1">Creator 1 Avatar</span>
+                        <input type="file" id="avatarUpload" accept="image/*" class="w-full text-[11px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[11px] file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
                     </div>
                 </div>
-
-                <div>
-                    <label for="footerInput" class="block text-[11px] text-zinc-400 mb-1">Custom Footer / Twitch Handle</label>
-                    <input id="footerInput" type="text" value="twitch.tv/kill3rguy94" maxlength="52" class="w-full p-2.5 rounded-xl bg-phx-card border border-zinc-700 text-phx-orange text-xs font-mono font-bold focus:outline-none focus:border-phx-orange transition">
-                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- RIGHT PANEL: Live High-Res Canvas Preview -->
-        <section class="lg:col-span-7 xl:col-span-8 flex flex-col glass-panel rounded-2xl overflow-hidden shadow-2xl">
-            <div class="px-5 py-3 bg-phx-card/90 border-b border-zinc-800 flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-2.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-zinc-200">Live High-Res Canvas Preview</span>
-                </div>
-                <div class="flex items-center gap-3 text-[11px] font-mono text-zinc-400">
-                    <span id="previewTemplateTag" class="px-2 py-0.5 rounded bg-zinc-800 text-phx-orange font-bold">TEMPLATE: LIVE NOW</span>
-                    <span id="previewDimTag">1080 × 1920 PX</span>
-                </div>
+        <!-- Right Live Preview Area -->
+        <div class="lg:col-span-7 flex flex-col items-center justify-center glass rounded-2xl p-4 sm:p-6 min-h-[540px]">
+            <div class="w-full flex items-center justify-between mb-3 px-1">
+                <span class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Live Canvas Preview
+                </span>
+                <span id="dimensionsBadge" class="text-xs font-mono bg-black/60 border border-gray-800 px-2.5 py-1 rounded text-phoenix-500">1080 × 1920 px</span>
             </div>
 
-            <div class="canvas-stage flex-grow flex items-center justify-center p-4 sm:p-8 min-h-[480px]">
-                <canvas id="promoCanvas" width="1080" height="1920" class="rounded-xl border border-zinc-700/70"></canvas>
+            <div class="w-full flex items-center justify-center bg-black/60 rounded-xl p-4 border border-gray-800/80 overflow-hidden">
+                <canvas id="promoCanvas" class="max-h-[68vh] w-auto max-w-full rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.9)]"></canvas>
             </div>
-        </section>
-
+        </div>
     </main>
 
     <script>
-        /**
-         * Phoenix Promo Studio v2
-         * High-Resolution HTML5 Canvas Banner & Social Generator for Phoenix Force (PHX).
-         */
+        const STREAMERS = {
+            "Kill3rGuy94": { role: "LEADER & FOUNDER", game: "League of Legends", link: "twitch.tv/kill3rguy94", logoPath: "logos/Kill3rGuy94.png" },
+            "YipYipMan_": { role: "STREAMERS MANAGER", game: "League of Legends", link: "twitch.tv/yipyipman_", logoPath: "logos/YipYipMan_.png" },
+            "YioGki": { role: "CONTENT CREATOR", game: "League of Legends", link: "twitch.tv/yiogki", logoPath: "logos/Yiogki.png" },
+            "catgamer_tv": { role: "CONTENT CREATOR", game: "Variety Gaming", link: "twitch.tv/catgamer_tv", logoPath: "logos/image_91fc9f.png" },
+            "CreepyPuppet_Tv": { role: "CONTENT CREATOR", game: "FPS & Variety", link: "twitch.tv/creepypuppet_tv", logoPath: "logos/image_91fc7c.png" },
+            "FenChris": { role: "CONTENT CREATOR", game: "AION2", link: "twitch.tv/fenchris", logoPath: "logos/Fenchris.png" },
+            "Ghost_R4in": { role: "CONTENT CREATOR", game: "Action & Racing", link: "twitch.tv/ghost_r4in", logoPath: "logos/Ghost.png" },
+            "demon_gekkouga": { role: "CONTENT CREATOR", game: "Variety & Comedy", link: "twitch.tv/demon_gekkouga", logoPath: "logos/Gekkouga.png" }
+        };
 
-        // Official Phoenix Force Roster Configuration
-        const ROSTER = [
-            {
-                id: "Kill3rGuy94",
-                name: "Kill3rGuy94",
-                role: "👑 LEADER & FOUNDER",
-                game: "VARIETY / GAMING",
-                link: "twitch.tv/kill3rguy94",
-                logoPath: "logos/Kill3rGuy94.png"
-            },
-            {
-                id: "YipYipMan_",
-                name: "YipYipMan_",
-                role: "⭐ STREAMERS MANAGER",
-                game: "LEAGUE OF LEGENDS",
-                link: "twitch.tv/yipyipman_",
-                logoPath: "logos/YipYipMan_.png"
-            },
-            {
-                id: "YioGki",
-                name: "YioGki",
-                role: "🔥 ELITE CREATOR",
-                game: "LEAGUE OF LEGENDS",
-                link: "twitch.tv/yiogki",
-                logoPath: "logos/Yiogki.png"
-            },
-            {
-                id: "catgamer_tv",
-                name: "catgamer_tv",
-                role: "🎮 VETERAN CREATOR",
-                game: "RETRO & VARIETY",
-                link: "twitch.tv/catgamer_tv",
-                logoPath: "logos/CatGamer.png"
-            },
-            {
-                id: "CreepyPuppet_Tv",
-                name: "CreepyPuppet_Tv",
-                role: "⚡ STREAMER",
-                game: "VARIETY GAMING",
-                link: "twitch.tv/creepypuppet_tv",
-                logoPath: "logos/Creepy.png"
-            },
-            {
-                id: "FenChris",
-                name: "FenChris",
-                role: "⚡ STREAMER",
-                game: "AION2",
-                link: "twitch.tv/fenchris",
-                logoPath: "logos/Fenchris.png"
-            },
-            {
-                id: "Ghost_R4in",
-                name: "Ghost_R4in",
-                role: "⚡ STREAMER",
-                game: "ACTION & RACING",
-                link: "twitch.tv/ghost_r4in",
-                logoPath: "logos/Ghost.png"
-            },
-            {
-                id: "demon_gekkouga",
-                name: "demon_gekkouga",
-                role: "⚡ STREAMER",
-                game: "VARIETY GAMING",
-                link: "twitch.tv/demon_gekkouga",
-                logoPath: "logos/Gekkouga.png"
-            }
+        const TEMPLATES = {
+            live: { badge: "LIVE NOW", title: "RANKED GRIND & CHILL", callout: "GIVEAWAYS • CUSTOM GAMES • GOOD VIBES" },
+            starting: { badge: "STARTING SOON", title: "STREAM STARTS IN 10'", callout: "GRAB YOUR COFFEE & JOIN CHAT" },
+            tournament: { badge: "PHX TOURNAMENT", title: "COMMUNITY CUSTOM NIGHT", callout: "PRIZES • LIVE CASTING • OPEN LOBBIES" },
+            welcome: { badge: "NEW PHOENIX", title: "WELCOME TO THE ROSTER", callout: "RISE FROM THE ASHES • PHX FAMILY" }
+        };
+
+        const FORMATS = {
+            story: { w: 1080, h: 1920, label: "1080 × 1920 px" },
+            post: { w: 1080, h: 1080, label: "1080 × 1080 px" },
+            banner: { w: 1920, h: 1080, label: "1920 × 1080 px" },
+            youtube: { w: 1280, h: 720, label: "1280 × 720 px" },
+            discord: { w: 960, h: 540, label: "960 × 540 px" }
+        };
+
+        let scheduleSlots = [
+            { day: "ΔΕΥΤΕΡΑ", time: "21:00", streamer: "Kill3rGuy94", game: "League of Legends" },
+            { day: "ΤΕΤΑΡΤΗ", time: "20:30", streamer: "YipYipMan_", game: "League of Legends" },
+            { day: "ΠΑΡΑΣΚΕΥΗ", time: "22:00", streamer: "FenChris", game: "AION2" },
+            { day: "ΣΑΒΒΑΤΟ", time: "21:00", streamer: "YioGki", game: "Community Customs" }
         ];
 
-        // Canvas Formats
-        const FORMATS = {
-            story: { width: 1080, height: 1920, name: "Story", label: "1080 × 1920 PX" },
-            post: { width: 1080, height: 1080, name: "Post", label: "1080 × 1080 PX" },
-            banner: { width: 1920, height: 1080, name: "StreamBanner", label: "1920 × 1080 PX" }
-        };
+        let studioMode = "stream";
+        let accentColor = "#FF8C00";
+        let secondaryColor = "#FF3B30";
 
-        // Event Templates
-        const TEMPLATES = {
-            live: {
-                tag: "LIVE NOW",
-                badge: "🔴 LIVE NOW ON TWITCH",
-                headline: "RANKED GRIND\nTO MASTER!",
-                accent: "orange"
-            },
-            schedule: {
-                tag: "WEEKLY SCHEDULE",
-                badge: "📅 WEEKLY STREAM SCHEDULE",
-                headline: "THIS WEEK\nON PHOENIX FORCE",
-                accent: "blue"
-            },
-            tournament: {
-                tag: "TOURNAMENT",
-                badge: "🏆 PHX COMMUNITY NIGHT",
-                headline: "PHOENIX CUP\nSHOWDOWN!",
-                accent: "orange"
-            },
-            welcome: {
-                tag: "NEW MEMBER",
-                badge: "🎉 WELCOME TO PHOENIX FORCE",
-                headline: "A NEW PHOENIX\nRISES!",
-                accent: "red"
-            }
-        };
+        const canvas = document.getElementById('promoCanvas');
+        const ctx = canvas.getContext('2d');
 
-        // Glow Color Themes
-        const ACCENTS = {
-            orange: {
-                primary: "#FF8C00",
-                secondary: "#FF3B30",
-                glow: "rgba(255, 140, 0, 0.35)",
-                secGlow: "rgba(255, 59, 48, 0.25)"
-            },
-            red: {
-                primary: "#FF3B30",
-                secondary: "#DC2626",
-                glow: "rgba(255, 59, 48, 0.38)",
-                secGlow: "rgba(220, 38, 38, 0.25)"
-            },
-            purple: {
-                primary: "#A855F7",
-                secondary: "#7E22CE",
-                glow: "rgba(168, 85, 247, 0.36)",
-                secGlow: "rgba(126, 34, 206, 0.25)"
-            },
-            blue: {
-                primary: "#0EA5E9",
-                secondary: "#2563EB",
-                glow: "rgba(14, 165, 233, 0.36)",
-                secGlow: "rgba(37, 99, 235, 0.25)"
-            }
-        };
+        let teamLogoImg = null;
+        let avatar1Img = null;
+        let avatar2Img = null;
+        let customBgImg = null;
+        let customAvatar1Override = false;
 
-        // Image Cache for Repo Logos & Uploaded Files
-        const imageCache = {
-            teamLogo: null,
-            repoLogos: {},
-            customBg: null,
-            customAvatar1: null,
-            customAvatar2: null
-        };
-
-        // Studio State
-        const state = {
-            format: "story",
-            template: "live",
-            collabMode: false,
-            creator1Id: "Kill3rGuy94",
-            creator2Id: "YipYipMan_",
-            darken: 65,
-            blur: 3,
-            accent: "orange",
-            badge: "🔴 LIVE NOW ON TWITCH",
-            headline: "RANKED GRIND\nTO MASTER!",
-            game: "VARIETY / GAMING",
-            time: "ΣΗΜΕΡΑ • 21:00",
-            footer: "twitch.tv/kill3rguy94"
-        };
-
-        const canvas = document.getElementById("promoCanvas");
-        const ctx = canvas.getContext("2d");
-
-        // Toast Helper
-        function showToast(msg) {
-            const box = document.getElementById("toastBox");
-            const text = document.getElementById("toastMessage");
-            text.textContent = msg;
-            box.classList.remove("hidden");
-            clearTimeout(window._toastTimeout);
-            window._toastTimeout = setTimeout(() => box.classList.add("hidden"), 3400);
+        function tryLoadImage(src, callback) {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => callback(img);
+            img.onerror = () => callback(null);
+            img.src = src;
         }
 
-        // Preload local repo logos gracefully (falls back cleanly if opened standalone)
-        function preloadRepoImages() {
-            const teamImg = new Image();
-            teamImg.onload = () => {
-                imageCache.teamLogo = teamImg;
-                renderCanvas();
-            };
-            teamImg.src = "logos/PHX.png";
+        tryLoadImage("logos/PHX.png", (img) => {
+            if (img) { teamLogoImg = img; renderBanner(); }
+        });
 
-            ROSTER.forEach(member => {
+        function loadCreatorAvatars() {
+            const s1 = document.getElementById('streamerSelect').value;
+            const s2 = document.getElementById('streamer2Select').value;
+            if (!customAvatar1Override) {
+                tryLoadImage(STREAMERS[s1].logoPath, (img) => { avatar1Img = img; renderBanner(); });
+            }
+            tryLoadImage(STREAMERS[s2].logoPath, (img) => { avatar2Img = img; renderBanner(); });
+        }
+
+        // Schedule Rows UI
+        function renderScheduleInputs() {
+            const container = document.getElementById('scheduleRowsContainer');
+            container.innerHTML = '';
+            scheduleSlots.forEach((slot, idx) => {
+                const options = Object.keys(STREAMERS).map(name => 
+                    `<option value="${name}" ${slot.streamer === name ? 'selected' : ''}>${name}</option>`
+                ).join('');
+                const row = document.createElement('div');
+                row.className = "grid grid-cols-12 gap-1.5 bg-black/50 p-2 rounded-lg border border-gray-800 items-center";
+                row.innerHTML = `
+                    <input type="text" value="${slot.day}" data-idx="${idx}" data-field="day" class="sched-inp col-span-3 bg-gray-900 border border-gray-700 rounded px-2 py-1 text-[11px] text-white font-bold">
+                    <input type="text" value="${slot.time}" data-idx="${idx}" data-field="time" class="sched-inp col-span-2 bg-gray-900 border border-gray-700 rounded px-1.5 py-1 text-[11px] text-phoenix-500 font-mono text-center">
+                    <select data-idx="${idx}" data-field="streamer" class="sched-inp col-span-3 bg-gray-900 border border-gray-700 rounded px-1.5 py-1 text-[11px] text-white">${options}</select>
+                    <input type="text" value="${slot.game}" data-idx="${idx}" data-field="game" class="sched-inp col-span-3 bg-gray-900 border border-gray-700 rounded px-2 py-1 text-[11px] text-gray-300">
+                    <button type="button" data-del="${idx}" class="del-slot col-span-1 text-red-400 hover:text-red-300 text-xs font-bold text-center">✕</button>
+                `;
+                container.appendChild(row);
+            });
+
+            document.querySelectorAll('.sched-inp').forEach(el => {
+                el.addEventListener('input', (e) => {
+                    const idx = e.target.dataset.idx;
+                    const field = e.target.dataset.field;
+                    scheduleSlots[idx][field] = e.target.value;
+                    renderBanner();
+                });
+            });
+
+            document.querySelectorAll('.del-slot').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(e.target.dataset.del);
+                    if (scheduleSlots.length > 1) {
+                        scheduleSlots.splice(idx, 1);
+                        renderScheduleInputs();
+                        renderBanner();
+                    }
+                });
+            });
+        }
+
+        document.getElementById('addSlotBtn').addEventListener('click', () => {
+            if (scheduleSlots.length < 7) {
+                scheduleSlots.push({ day: "ΚΥΡΙΑΚΗ", time: "21:00", streamer: "catgamer_tv", game: "Variety Gaming" });
+                renderScheduleInputs();
+                renderBanner();
+            }
+        });
+
+        // Mode Switching
+        document.getElementById('modeStreamBtn').addEventListener('click', () => {
+            studioMode = "stream";
+            document.getElementById('modeStreamBtn').className = "py-2 rounded-lg text-xs font-black uppercase tracking-wider bg-gradient-to-r from-phoenix-500 to-phoenix-red text-white shadow";
+            document.getElementById('modeScheduleBtn').className = "py-2 rounded-lg text-xs font-black uppercase tracking-wider text-gray-400 hover:text-white transition";
+            document.getElementById('streamControls').classList.remove('hidden');
+            document.getElementById('templateWrapper').classList.remove('hidden');
+            document.getElementById('scheduleControls').classList.add('hidden');
+            renderBanner();
+        });
+
+        document.getElementById('modeScheduleBtn').addEventListener('click', () => {
+            studioMode = "schedule";
+            document.getElementById('modeScheduleBtn').className = "py-2 rounded-lg text-xs font-black uppercase tracking-wider bg-gradient-to-r from-phoenix-500 to-phoenix-red text-white shadow";
+            document.getElementById('modeStreamBtn').className = "py-2 rounded-lg text-xs font-black uppercase tracking-wider text-gray-400 hover:text-white transition";
+            document.getElementById('streamControls').classList.add('hidden');
+            document.getElementById('templateWrapper').classList.add('hidden');
+            document.getElementById('scheduleControls').classList.remove('hidden');
+            renderScheduleInputs();
+            renderBanner();
+        });
+
+        // Color Swatches
+        document.querySelectorAll('.color-swatch').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('border-2', 'border-white'));
+                btn.classList.add('border-2', 'border-white');
+                accentColor = btn.dataset.accent;
+                secondaryColor = btn.dataset.secondary;
+                document.getElementById('customColorPicker').value = accentColor;
+                renderBanner();
+            });
+        });
+
+        document.getElementById('customColorPicker').addEventListener('input', (e) => {
+            accentColor = e.target.value;
+            secondaryColor = e.target.value;
+            renderBanner();
+        });
+
+        // Game Pills
+        document.querySelectorAll('.game-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.getElementById('gameInput').value = pill.dataset.game;
+                renderBanner();
+            });
+        });
+
+        // Template & Streamer Auto-Fill
+        document.getElementById('templateSelect').addEventListener('change', (e) => {
+            const tpl = TEMPLATES[e.target.value];
+            if (tpl) {
+                document.getElementById('badgeInput').value = tpl.badge;
+                document.getElementById('titleInput').value = tpl.title;
+                document.getElementById('calloutInput').value = tpl.callout;
+            }
+            renderBanner();
+        });
+
+        function updateStreamerFields() {
+            const s1 = document.getElementById('streamerSelect').value;
+            const s2 = document.getElementById('streamer2Select').value;
+            const isCollab = document.getElementById('collabToggle').checked;
+            document.getElementById('gameInput').value = STREAMERS[s1].game;
+            document.getElementById('linkInput').value = isCollab ? `${STREAMERS[s1].link}  •  ${STREAMERS[s2].link}` : STREAMERS[s1].link;
+            loadCreatorAvatars();
+        }
+
+        document.getElementById('streamerSelect').addEventListener('change', updateStreamerFields);
+        document.getElementById('streamer2Select').addEventListener('change', updateStreamerFields);
+        document.getElementById('collabToggle').addEventListener('change', (e) => {
+            document.getElementById('collabStreamerBox').classList.toggle('hidden', !e.target.checked);
+            updateStreamerFields();
+        });
+
+        // File Uploads
+        document.getElementById('bgUpload').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
                 const img = new Image();
                 img.onload = () => {
-                    imageCache.repoLogos[member.id] = img;
-                    renderCanvas();
+                    customBgImg = img;
+                    document.getElementById('clearBgBtn').classList.remove('hidden');
+                    renderBanner();
                 };
-                img.src = member.logoPath;
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('clearBgBtn').addEventListener('click', () => {
+            customBgImg = null;
+            document.getElementById('bgUpload').value = "";
+            document.getElementById('clearBgBtn').classList.add('hidden');
+            renderBanner();
+        });
+
+        document.getElementById('teamLogoUpload').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => { teamLogoImg = img; renderBanner(); };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('avatarUpload').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => { customAvatar1Override = true; avatar1Img = img; renderBanner(); };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Live Inputs & Sliders
+        ['formatSelect', 'fontSelect', 'badgeInput', 'titleInput', 'calloutInput', 'gameInput', 'timeInput', 'linkInput', 'schedTitleInput', 'schedSubtitleInput'].forEach(id => {
+            document.getElementById(id).addEventListener('input', renderBanner);
+        });
+
+        const sliderMappings = [
+            ['darkenSlider', 'darkenVal', '%'],
+            ['blurSlider', 'blurVal', 'px'],
+            ['titleSizeSlider', 'titleSizeVal', '%'],
+            ['glowSlider', 'glowVal', '%'],
+            ['avatarScaleSlider', 'avatarScaleVal', '%'],
+            ['avatarOffsetSlider', 'avatarOffsetVal', 'px']
+        ];
+
+        sliderMappings.forEach(([sId, vId, unit]) => {
+            document.getElementById(sId).addEventListener('input', (e) => {
+                document.getElementById(vId).textContent = `${e.target.value}${unit}`;
+                renderBanner();
             });
+        });
+
+        // Drawing Helpers
+        function drawPhoenixVector(cx, cy, size) {
+            ctx.save();
+            ctx.translate(cx, cy);
+            const grad = ctx.createLinearGradient(-size, -size, size, size);
+            grad.addColorStop(0, accentColor);
+            grad.addColorStop(1, secondaryColor);
+            ctx.fillStyle = grad;
+
+            ctx.beginPath();
+            ctx.moveTo(0, -size * 0.72);
+            ctx.bezierCurveTo(size * 0.42, -size * 0.25, size * 0.88, -size * 0.48, size * 0.62, size * 0.12);
+            ctx.bezierCurveTo(size * 0.48, size * 0.42, size * 0.18, size * 0.52, 0, size * 0.82);
+            ctx.bezierCurveTo(-size * 0.18, size * 0.52, -size * 0.48, size * 0.42, -size * 0.62, size * 0.12);
+            ctx.bezierCurveTo(-size * 0.88, -size * 0.48, -size * 0.42, -size * 0.25, 0, -size * 0.72);
+            ctx.fill();
+
+            ctx.fillStyle = "#08090C";
+            ctx.beginPath();
+            ctx.moveTo(0, -size * 0.28);
+            ctx.lineTo(size * 0.22, size * 0.18);
+            ctx.lineTo(0, size * 0.04);
+            ctx.lineTo(-size * 0.22, size * 0.18);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
         }
 
-        // Populate Creator Dropdowns
-        function initRosterDropdowns() {
-            const sel1 = document.getElementById("creator1Select");
-            const sel2 = document.getElementById("creator2Select");
-
-            ROSTER.forEach(m => {
-                const opt1 = document.createElement("option");
-                opt1.value = m.id;
-                opt1.textContent = `${m.name} (${m.role.replace(/^[^\s]+\s/, "")})`;
-                sel1.appendChild(opt1);
-
-                const opt2 = document.createElement("option");
-                opt2.value = m.id;
-                opt2.textContent = `${m.name} (${m.role.replace(/^[^\s]+\s/, "")})`;
-                sel2.appendChild(opt2);
-            });
-
-            sel1.value = state.creator1Id;
-            sel2.value = state.creator2Id;
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
         }
 
-        function getCreator(id) {
-            return ROSTER.find(m => m.id === id) || ROSTER[0];
-        }
-
-        function updateAutoCreatorFields() {
-            const c1 = getCreator(state.creator1Id);
-            const c2 = getCreator(state.creator2Id);
-
-            if (state.collabMode) {
-                state.game = c1.game === c2.game ? c1.game : `${c1.game} × ${c2.game}`;
-                state.footer = `${c1.link}  •  ${c2.link}`;
-            } else {
-                state.game = c1.game;
-                state.footer = c1.link;
-            }
-
-            document.getElementById("gameInput").value = state.game;
-            document.getElementById("footerInput").value = state.footer;
-        }
-
-        // Canvas Utility: Rounded Rect
-        function roundRect(context, x, y, w, h, r) {
-            context.beginPath();
-            context.moveTo(x + r, y);
-            context.lineTo(x + w - r, y);
-            context.quadraticCurveTo(x + w, y, x + w, y + r);
-            context.lineTo(x + w, y + h - r);
-            context.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-            context.lineTo(x + r, y + h);
-            context.quadraticCurveTo(x, y + h, x, y + h - r);
-            context.lineTo(x, y + r);
-            context.quadraticCurveTo(x, y, x + r, y);
-            context.closePath();
-        }
-
-        // Canvas Utility: Cover-crop image drawing
-        function drawCoverImage(context, img, targetX, targetY, targetW, targetH) {
-            const imgRatio = img.width / img.height;
-            const targetRatio = targetW / targetH;
-            let drawW, drawH, offsetX, offsetY;
-
-            if (imgRatio > targetRatio) {
-                drawH = targetH;
-                drawW = img.width * (targetH / img.height);
-                offsetX = targetX - (drawW - targetW) / 2;
-                offsetY = targetY;
-            } else {
-                drawW = targetW;
-                drawH = img.height * (targetW / img.width);
-                offsetX = targetX;
-                offsetY = targetY - (drawH - targetH) / 2;
-            }
-            context.drawImage(img, offsetX, offsetY, drawW, drawH);
-        }
-
-        // Canvas Utility: Procedural Vector Phoenix Emblem & Stylized Initials Fallback
-        function drawPhoenixFallbackAvatar(context, cx, cy, radius, creatorName, accent) {
-            const bgGrad = context.createRadialGradient(cx, cy - radius * 0.25, radius * 0.1, cx, cy, radius);
-            bgGrad.addColorStop(0, "#23232e");
-            bgGrad.addColorStop(1, "#0b0b0e");
-            context.fillStyle = bgGrad;
-            context.beginPath();
-            context.arc(cx, cy, radius, 0, Math.PI * 2);
-            context.fill();
-
-            // Vector Phoenix Wings Silhouette
-            context.save();
-            context.translate(cx, cy);
-            const s = radius / 100;
-            context.scale(s, s);
-
-            const wingGrad = context.createLinearGradient(0, -65, 0, 65);
-            wingGrad.addColorStop(0, accent.primary);
-            wingGrad.addColorStop(1, accent.secondary);
-            context.fillStyle = wingGrad;
-            context.globalAlpha = 0.35;
-
-            // Left Wing
-            context.beginPath();
-            context.moveTo(-6, 12);
-            context.lineTo(-72, -36);
-            context.lineTo(-50, 8);
-            context.lineTo(-78, 22);
-            context.lineTo(-22, 46);
-            context.closePath();
-            context.fill();
-
-            // Right Wing
-            context.beginPath();
-            context.moveTo(6, 12);
-            context.lineTo(72, -36);
-            context.lineTo(50, 8);
-            context.lineTo(78, 22);
-            context.lineTo(22, 46);
-            context.closePath();
-            context.fill();
-
-            // Center Flame Crest
-            context.beginPath();
-            context.moveTo(0, -72);
-            context.lineTo(22, -12);
-            context.lineTo(0, 72);
-            context.lineTo(-22, -12);
-            context.closePath();
-            context.fill();
-
-            context.globalAlpha = 1;
-            // Stylized Initials
-            const initials = creatorName.replace(/[^a-zA-Z0-9]/g, "").slice(0, 2).toUpperCase() || "PHX";
-            context.fillStyle = "#ffffff";
-            context.font = "900 48px Inter, sans-serif";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText(initials, 0, 4);
-
-            context.restore();
-        }
-
-        // Draw Circular Creator Avatar with Neon Ring
-        function drawCreatorAvatar(context, cx, cy, radius, creator, customImg, accent) {
-            // Outer Glow Ring
-            context.save();
-            context.shadowColor = accent.primary;
-            context.shadowBlur = 42;
-            context.beginPath();
-            context.arc(cx, cy, radius + 7, 0, Math.PI * 2);
-            context.strokeStyle = accent.primary;
-            context.lineWidth = 7;
-            context.stroke();
-            context.restore();
-
-            // Secondary Thin Inner Border
-            context.beginPath();
-            context.arc(cx, cy, radius + 2, 0, Math.PI * 2);
-            context.strokeStyle = "rgba(255,255,255,0.35)";
-            context.lineWidth = 2;
-            context.stroke();
-
-            // Clipped Avatar Content
-            context.save();
-            context.beginPath();
-            context.arc(cx, cy, radius, 0, Math.PI * 2);
-            context.clip();
-
-            const activeImg = customImg || imageCache.repoLogos[creator.id] || null;
-            if (activeImg) {
-                drawCoverImage(context, activeImg, cx - radius, cy - radius, radius * 2, radius * 2);
-            } else {
-                drawPhoenixFallbackAvatar(context, cx, cy, radius, creator.name, accent);
-            }
-            context.restore();
-        }
-
-        // Draw Small Top Team Emblem (PHX.png or Vector Crest)
-        function drawTopBrandMark(context, x, y, size, accent) {
-            if (imageCache.teamLogo) {
-                context.drawImage(imageCache.teamLogo, x - size / 2, y - size / 2, size, size);
-            } else {
-                context.save();
-                context.translate(x, y);
-                const s = size / 44;
-                context.scale(s, s);
-                const g = context.createLinearGradient(0, -18, 0, 18);
-                g.addColorStop(0, accent.primary);
-                g.addColorStop(1, accent.secondary);
-                context.fillStyle = g;
-                context.beginPath();
-                context.moveTo(0, -18);
-                context.lineTo(16, -4);
-                context.lineTo(10, 14);
-                context.lineTo(0, 8);
-                context.lineTo(-10, 14);
-                context.lineTo(-16, -4);
-                context.closePath();
-                context.fill();
-                context.restore();
-            }
-        }
-
-        // Multi-line Headline Wrapping
-        function wrapMultilineText(context, rawText, maxWidth) {
-            const paragraphs = rawText.split(/\r?\n/);
-            const resultLines = [];
-
-            paragraphs.forEach(para => {
-                const words = para.trim().split(/\s+/);
-                let line = "";
-                words.forEach(word => {
-                    const test = line ? `${line} ${word}` : word;
-                    if (context.measureText(test).width > maxWidth && line) {
-                        resultLines.push(line);
-                        line = word;
-                    } else {
-                        line = test;
-                    }
-                });
-                if (line) resultLines.push(line);
-            });
-
-            return resultLines.length ? resultLines : [""];
-        }
-
-        // MAIN RENDER PIPELINE
-        function renderCanvas() {
-            const fmt = FORMATS[state.format];
-            const accent = ACCENTS[state.accent];
-            const c1 = getCreator(state.creator1Id);
-            const c2 = getCreator(state.creator2Id);
-
-            canvas.width = fmt.width;
-            canvas.height = fmt.height;
-
-            const W = canvas.width;
-            const H = canvas.height;
-
-            // 1. Base Background
-            ctx.fillStyle = "#0b0b0e";
-            ctx.fillRect(0, 0, W, H);
-
-            if (imageCache.customBg) {
-                // Draw Custom Background with Blur Filter
-                ctx.save();
-                if (state.blur > 0) {
-                    ctx.filter = `blur(${state.blur}px)`;
+        function drawWrappedText(text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            const lines = [];
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+                    lines.push(line.trim());
+                    line = words[n] + ' ';
+                } else {
+                    line = testLine;
                 }
-                const bleed = state.blur * 2.5;
-                drawCoverImage(ctx, imageCache.customBg, -bleed, -bleed, W + bleed * 2, H + bleed * 2);
+            }
+            lines.push(line.trim());
+            const totalHeight = (lines.length - 1) * lineHeight;
+            lines.forEach((l, idx) => ctx.fillText(l, x, y - totalHeight / 2 + idx * lineHeight));
+        }
+
+        function drawCreatorAvatar(cx, cy, radius, name, imgObj, glowMult) {
+            ctx.save();
+            ctx.shadowColor = accentColor;
+            ctx.shadowBlur = 40 * glowMult;
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius + 8, 0, Math.PI * 2);
+            const ringGrad = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius);
+            ringGrad.addColorStop(0, accentColor);
+            ringGrad.addColorStop(1, secondaryColor);
+            ctx.fillStyle = ringGrad;
+            ctx.fill();
+            ctx.restore();
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.clip();
+            if (imgObj) {
+                const scale = Math.max((radius * 2) / imgObj.width, (radius * 2) / imgObj.height);
+                const iw = imgObj.width * scale;
+                const ih = imgObj.height * scale;
+                ctx.drawImage(imgObj, cx - iw / 2, cy - ih / 2, iw, ih);
+            } else {
+                ctx.fillStyle = "#141720";
+                ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+                ctx.fillStyle = accentColor;
+                ctx.font = `900 ${Math.round(radius * 0.72)}px Orbitron, sans-serif`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(name.substring(0, 2).toUpperCase(), cx, cy + 4);
+            }
+            ctx.restore();
+        }
+
+        function drawBackground(w, h, glowMult) {
+            ctx.fillStyle = "#08090C";
+            ctx.fillRect(0, 0, w, h);
+
+            if (customBgImg) {
+                const darkenAlpha = parseInt(document.getElementById('darkenSlider').value) / 100;
+                const blurPx = parseInt(document.getElementById('blurSlider').value);
+
+                ctx.save();
+                if (blurPx > 0) ctx.filter = `blur(${blurPx}px)`;
+                const scale = Math.max((w + blurPx * 4) / customBgImg.width, (h + blurPx * 4) / customBgImg.height);
+                const bgW = customBgImg.width * scale;
+                const bgH = customBgImg.height * scale;
+                ctx.drawImage(customBgImg, (w - bgW) / 2, (h - bgH) / 2, bgW, bgH);
                 ctx.restore();
 
-                // Apply Darken Overlay Opacity
-                ctx.fillStyle = `rgba(11, 11, 14, ${state.darken / 100})`;
-                ctx.fillRect(0, 0, W, H);
+                ctx.fillStyle = `rgba(8, 9, 12, ${darkenAlpha})`;
+                ctx.fillRect(0, 0, w, h);
+
+                const vignette = ctx.createRadialGradient(w / 2, h / 2, w * 0.2, w / 2, h / 2, Math.max(w, h) * 0.75);
+                vignette.addColorStop(0, "rgba(0,0,0,0)");
+                vignette.addColorStop(1, "rgba(8,9,12,0.72)");
+                ctx.fillStyle = vignette;
+                ctx.fillRect(0, 0, w, h);
             } else {
-                // Procedural Dark Embers & Tactical Grid Background
-                const g1 = ctx.createRadialGradient(W * 0.5, H * 0.25, 20, W * 0.5, H * 0.25, Math.max(W, H) * 0.65);
-                g1.addColorStop(0, accent.glow);
-                g1.addColorStop(1, "rgba(11, 11, 14, 0)");
-                ctx.fillStyle = g1;
-                ctx.fillRect(0, 0, W, H);
+                const radGrad = ctx.createRadialGradient(w * 0.5, h * 0.35, 40, w * 0.5, h * 0.45, Math.max(w, h) * 0.8);
+                radGrad.addColorStop(0, `${accentColor}33`);
+                radGrad.addColorStop(0.5, `${secondaryColor}18`);
+                radGrad.addColorStop(1, "rgba(8, 9, 12, 1)");
+                ctx.fillStyle = radGrad;
+                ctx.fillRect(0, 0, w, h);
 
-                const g2 = ctx.createRadialGradient(W * 0.85, H * 0.85, 10, W * 0.85, H * 0.85, Math.max(W, H) * 0.5);
-                g2.addColorStop(0, accent.secGlow);
-                g2.addColorStop(1, "rgba(11, 11, 14, 0)");
-                ctx.fillStyle = g2;
-                ctx.fillRect(0, 0, W, H);
-
-                // Subtle Tactical Grid
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.035)";
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
                 ctx.lineWidth = 2;
-                const step = 64;
-                for (let x = 0; x <= W; x += step) {
+                for (let i = -h; i < w + h; i += 80) {
                     ctx.beginPath();
-                    ctx.moveTo(x, 0);
-                    ctx.lineTo(x, H);
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i - h * 0.5, h);
                     ctx.stroke();
                 }
-                for (let y = 0; y <= H; y += step) {
-                    ctx.beginPath();
-                    ctx.moveTo(0, y);
-                    ctx.lineTo(W, y);
-                    ctx.stroke();
+            }
+
+            // Outer Neon Frame
+            ctx.save();
+            ctx.shadowColor = accentColor;
+            ctx.shadowBlur = 20 * glowMult;
+            const frameGrad = ctx.createLinearGradient(0, 0, w, h);
+            frameGrad.addColorStop(0, accentColor);
+            frameGrad.addColorStop(0.5, secondaryColor);
+            frameGrad.addColorStop(1, accentColor);
+            ctx.strokeStyle = frameGrad;
+            ctx.lineWidth = Math.max(8, Math.round(w * 0.008));
+            ctx.strokeRect(22, 22, w - 44, h - 44);
+            ctx.restore();
+        }
+
+        function renderWeeklySchedule(w, h, fontFamily, titleMult, glowMult) {
+            const isVertical = h > w;
+            const schedTitle = document.getElementById('schedTitleInput').value.toUpperCase() || "WEEKLY STREAM SCHEDULE";
+            const schedSub = document.getElementById('schedSubtitleInput').value.toUpperCase() || "PHOENIX FORCE ROSTER";
+
+            // Header Logo
+            const topY = isVertical ? 110 : 65;
+            if (teamLogoImg) {
+                ctx.drawImage(teamLogoImg, w / 2 - 42, topY - 42, 84, 84);
+            } else {
+                drawPhoenixVector(w / 2, topY, 36);
+            }
+
+            // Main Title
+            ctx.save();
+            ctx.shadowColor = accentColor;
+            ctx.shadowBlur = 25 * glowMult;
+            ctx.fillStyle = "#FFFFFF";
+            const baseTitlePx = isVertical ? 66 : (w < 1100 ? 42 : 58);
+            ctx.font = `900 ${Math.round(baseTitlePx * titleMult)}px '${fontFamily}', sans-serif`;
+            ctx.textAlign = "center";
+            ctx.fillText(schedTitle, w / 2, topY + (isVertical ? 115 : 85));
+            ctx.restore();
+
+            ctx.fillStyle = accentColor;
+            ctx.font = `700 ${isVertical ? 24 : 18}px Inter, sans-serif`;
+            ctx.textAlign = "center";
+            ctx.fillText(schedSub, w / 2, topY + (isVertical ? 160 : 118));
+
+            // Schedule Rows
+            const startY = topY + (isVertical ? 235 : 165);
+            const footerSpace = isVertical ? 140 : 85;
+            const availH = h - startY - footerSpace;
+            const count = scheduleSlots.length;
+            const rowGap = isVertical ? 22 : 12;
+            const rowH = Math.min(isVertical ? 175 : 92, (availH - rowGap * (count - 1)) / count);
+            const cardW = isVertical ? w - 140 : w - 220;
+            const cardX = (w - cardW) / 2;
+
+            scheduleSlots.forEach((slot, i) => {
+                const ry = startY + i * (rowH + rowGap);
+
+                // Row Glass Card
+                ctx.fillStyle = "rgba(15, 18, 26, 0.85)";
+                roundRect(ctx, cardX, ry, cardW, rowH, 16);
+                ctx.fill();
+
+                ctx.strokeStyle = i % 2 === 0 ? `${accentColor}88` : "rgba(255,255,255,0.14)";
+                ctx.lineWidth = 2;
+                roundRect(ctx, cardX, ry, cardW, rowH, 16);
+                ctx.stroke();
+
+                // Left Accent Bar
+                ctx.fillStyle = i % 2 === 0 ? accentColor : secondaryColor;
+                roundRect(ctx, cardX, ry, 10, rowH, 5);
+                ctx.fill();
+
+                // Day & Time
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = accentColor;
+                ctx.font = `900 ${isVertical ? 30 : 22}px '${fontFamily}', sans-serif`;
+                ctx.fillText(slot.day.toUpperCase(), cardX + 34, ry + rowH * 0.36);
+
+                ctx.fillStyle = "#E5E7EB";
+                ctx.font = `700 ${isVertical ? 24 : 18}px Inter, sans-serif`;
+                ctx.fillText(`⏰ ${slot.time}`, cardX + 34, ry + rowH * 0.72);
+
+                // Streamer Name
+                ctx.textAlign = "center";
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${isVertical ? 38 : 28}px '${fontFamily}', sans-serif`;
+                ctx.fillText(slot.streamer, w / 2 + 40, ry + rowH * 0.5);
+
+                // Game Tag
+                ctx.textAlign = "right";
+                ctx.fillStyle = "#9CA3AF";
+                ctx.font = `700 ${isVertical ? 24 : 19}px Inter, sans-serif`;
+                ctx.fillText(`🎮 ${slot.game}`, cardX + cardW - 30, ry + rowH * 0.5);
+            });
+
+            // Footer
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#9CA3AF";
+            ctx.font = `700 ${isVertical ? 24 : 17}px Inter, sans-serif`;
+            ctx.fillText("PHOENIX FORCE  •  discord.gg/dVAChyHX4j  •  @phoenixforceg", w / 2, h - (isVertical ? 65 : 42));
+        }
+
+        function renderBanner() {
+            const formatKey = document.getElementById('formatSelect').value;
+            const { w, h, label } = FORMATS[formatKey];
+            canvas.width = w;
+            canvas.height = h;
+            document.getElementById('dimensionsBadge').textContent = label;
+
+            const fontFamily = document.getElementById('fontSelect').value;
+            const titleMult = parseInt(document.getElementById('titleSizeSlider').value) / 100;
+            const glowMult = parseInt(document.getElementById('glowSlider').value) / 100;
+
+            drawBackground(w, h, glowMult);
+
+            if (studioMode === "schedule") {
+                renderWeeklySchedule(w, h, fontFamily, titleMult, glowMult);
+                return;
+            }
+
+            const s1Name = document.getElementById('streamerSelect').value;
+            const s2Name = document.getElementById('streamer2Select').value;
+            const isCollab = document.getElementById('collabToggle').checked;
+            const s1Data = STREAMERS[s1Name];
+            const badgeText = document.getElementById('badgeInput').value.toUpperCase();
+            const titleText = document.getElementById('titleInput').value.toUpperCase();
+            const calloutText = document.getElementById('calloutInput').value.toUpperCase();
+            const gameText = document.getElementById('gameInput').value;
+            const timeText = document.getElementById('timeInput').value;
+            const linkText = document.getElementById('linkInput').value;
+
+            const avatarMult = parseInt(document.getElementById('avatarScaleSlider').value) / 100;
+            const avatarOffsetY = parseInt(document.getElementById('avatarOffsetSlider').value);
+
+            const isVertical = h > w;
+            const isSquare = w === h;
+
+            if (isVertical || isSquare) {
+                const topLogoY = isVertical ? 140 : 95;
+                if (teamLogoImg) {
+                    const lw = isVertical ? 120 : 88;
+                    ctx.drawImage(teamLogoImg, w / 2 - lw / 2, topLogoY - lw / 2, lw, lw);
+                } else {
+                    drawPhoenixVector(w / 2, topLogoY, isVertical ? 48 : 34);
                 }
 
-                // Procedural Glowing Embers Particles
-                const embers = [
-                    [0.14, 0.18, 5], [0.86, 0.22, 6], [0.22, 0.72, 4], [0.78, 0.68, 7],
-                    [0.35, 0.42, 3], [0.68, 0.35, 5], [0.12, 0.88, 6], [0.91, 0.82, 4]
-                ];
-                embers.forEach(([rx, ry, r]) => {
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${isVertical ? 30 : 22}px Orbitron, sans-serif`;
+                ctx.textAlign = "center";
+                ctx.fillText("PHOENIX FORCE", w / 2, topLogoY + (isVertical ? 88 : 65));
+
+                if (badgeText) {
+                    const badgeY = isVertical ? 280 : 192;
+                    ctx.font = `900 ${isVertical ? 28 : 21}px Orbitron, sans-serif`;
+                    const bw = ctx.measureText(badgeText).width + 80;
+                    const bh = isVertical ? 54 : 42;
                     ctx.save();
-                    ctx.fillStyle = accent.primary;
-                    ctx.shadowColor = accent.primary;
-                    ctx.shadowBlur = 16;
-                    ctx.globalAlpha = 0.55;
-                    ctx.beginPath();
-                    ctx.arc(W * rx, H * ry, r, 0, Math.PI * 2);
+                    ctx.shadowColor = secondaryColor;
+                    ctx.shadowBlur = 18 * glowMult;
+                    ctx.fillStyle = secondaryColor;
+                    roundRect(ctx, w / 2 - bw / 2, badgeY - bh / 2, bw, bh, 27);
                     ctx.fill();
                     ctx.restore();
-                });
-            }
 
-            // 2. Dark Gradient Vignette for Crisp Typography
-            const vignette = ctx.createRadialGradient(W * 0.5, H * 0.5, Math.min(W, H) * 0.25, W * 0.5, H * 0.5, Math.max(W, H) * 0.75);
-            vignette.addColorStop(0, "rgba(11, 11, 14, 0)");
-            vignette.addColorStop(1, "rgba(5, 5, 8, 0.78)");
-            ctx.fillStyle = vignette;
-            ctx.fillRect(0, 0, W, H);
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.beginPath();
+                    ctx.arc(w / 2 - bw / 2 + 26, badgeY, 7, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillText(badgeText, w / 2 + 10, badgeY + (isVertical ? 9 : 7));
+                }
 
-            // 3. Esports HUD Frame & Neon Corner Accents
-            const pad = 42;
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
-            ctx.lineWidth = 2;
-            ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
+                const avatarY = (isVertical ? 530 : 375) + avatarOffsetY;
+                const baseR = isCollab ? (isVertical ? 125 : 88) : (isVertical ? 160 : 112);
+                const r = Math.round(baseR * avatarMult);
 
-            const bLen = 62;
-            ctx.strokeStyle = accent.primary;
-            ctx.lineWidth = 6;
-            // Top-left
-            ctx.beginPath(); ctx.moveTo(pad, pad + bLen); ctx.lineTo(pad, pad); ctx.lineTo(pad + bLen, pad); ctx.stroke();
-            // Top-right
-            ctx.beginPath(); ctx.moveTo(W - pad - bLen, pad); ctx.lineTo(W - pad, pad); ctx.lineTo(W - pad, pad + bLen); ctx.stroke();
-            // Bottom-left
-            ctx.beginPath(); ctx.moveTo(pad, H - pad - bLen); ctx.lineTo(pad, H - pad); ctx.lineTo(pad + bLen, H - pad); ctx.stroke();
-            // Bottom-right
-            ctx.beginPath(); ctx.moveTo(W - pad - bLen, H - pad); ctx.lineTo(W - pad, H - pad); ctx.lineTo(W - pad, H - pad - bLen); ctx.stroke();
+                if (isCollab) {
+                    const spread = isVertical ? 185 : 140;
+                    drawCreatorAvatar(w / 2 - spread, avatarY, r, s1Name, avatar1Img, glowMult);
+                    drawCreatorAvatar(w / 2 + spread, avatarY, r, s2Name, avatar2Img, glowMult);
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `900 ${isVertical ? 50 : 36}px Orbitron, sans-serif`;
+                    ctx.fillText("×", w / 2, avatarY + 14);
+                } else {
+                    drawCreatorAvatar(w / 2, avatarY, r, s1Name, avatar1Img, glowMult);
+                }
 
-            // 4. Render Format-Specific Layout
-            if (state.format === "banner") {
-                drawLandscapeBanner(W, H, accent, c1, c2);
-            } else {
-                drawVerticalOrSquare(W, H, accent, c1, c2);
-            }
+                const nameY = avatarY + r + (isVertical ? 78 : 54);
+                ctx.fillStyle = "#FFFFFF";
+                const displayNames = isCollab ? `${s1Name} × ${s2Name}` : s1Name;
+                const nameSize = isCollab ? (isVertical ? 44 : 32) : (isVertical ? 66 : 46);
+                ctx.font = `900 ${nameSize}px '${fontFamily}', sans-serif`;
+                ctx.fillText(displayNames, w / 2, nameY);
 
-            // 5. Official PHX Watermark Footer
-            const footerY = H - 72;
-            ctx.fillStyle = "rgba(255, 255, 255, 0.58)";
-            ctx.font = "800 20px Inter, sans-serif";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("PHOENIX FORCE (PHX)  //  RISE WITH PHOENIX", W / 2, footerY);
-        }
+                ctx.fillStyle = accentColor;
+                ctx.font = `700 ${isVertical ? 26 : 19}px Inter, sans-serif`;
+                ctx.fillText(isCollab ? "PHOENIX FORCE COLLAB STREAM" : s1Data.role, w / 2, nameY + (isVertical ? 44 : 32));
 
-        // Layout for 1080x1920 (Story) & 1080x1080 (Post)
-        function drawVerticalOrSquare(W, H, accent, c1, c2) {
-            const isStory = state.format === "story";
-            const cx = W / 2;
-
-            // Top Team Header
-            const headerY = isStory ? 125 : 96;
-            drawTopBrandMark(ctx, cx - 195, headerY, 42, accent);
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "900 24px Inter, sans-serif";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("PHOENIX FORCE ESPORTS", cx + 22, headerY);
-
-            // Status Badge Pill
-            const badgeY = isStory ? 215 : 158;
-            const badgeText = (state.badge || "🔴 LIVE NOW").toUpperCase();
-            ctx.font = "900 30px Inter, sans-serif";
-            const badgeW = Math.min(W - 140, ctx.measureText(badgeText).width + 78);
-            const badgeH = 64;
-
-            const badgeGrad = ctx.createLinearGradient(cx - badgeW / 2, badgeY, cx + badgeW / 2, badgeY);
-            badgeGrad.addColorStop(0, accent.secondary);
-            badgeGrad.addColorStop(1, accent.primary);
-
-            ctx.save();
-            ctx.shadowColor = accent.primary;
-            ctx.shadowBlur = 26;
-            roundRect(ctx, cx - badgeW / 2, badgeY - badgeH / 2, badgeW, badgeH, 16);
-            ctx.fillStyle = badgeGrad;
-            ctx.fill();
-            ctx.restore();
-
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText(badgeText, cx, badgeY + 2);
-
-            // Creator Avatar(s)
-            const avatarY = isStory ? 470 : 335;
-
-            if (state.collabMode) {
-                const r = isStory ? 132 : 96;
-                const offset = isStory ? 185 : 145;
-
-                drawCreatorAvatar(ctx, cx - offset, avatarY, r, c1, imageCache.customAvatar1, accent);
-                drawCreatorAvatar(ctx, cx + offset, avatarY, r, c2, imageCache.customAvatar2, accent);
-
-                // Center "X" Energy Badge
+                const titleY = isVertical ? 1050 : 675;
                 ctx.save();
-                ctx.shadowColor = accent.primary;
-                ctx.shadowBlur = 24;
-                ctx.fillStyle = "#141419";
-                ctx.beginPath();
-                ctx.arc(cx, avatarY, isStory ? 44 : 34, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = accent.primary;
-                ctx.stroke();
-
-                ctx.fillStyle = accent.primary;
-                ctx.font = isStory ? "900 38px Inter, sans-serif" : "900 28px Inter, sans-serif";
-                ctx.fillText("×", cx, avatarY + 2);
+                ctx.shadowColor = accentColor;
+                ctx.shadowBlur = 24 * glowMult;
+                ctx.fillStyle = "#FFFFFF";
+                const baseTSize = isVertical ? 74 : 50;
+                ctx.font = `900 ${Math.round(baseTSize * titleMult)}px '${fontFamily}', sans-serif`;
+                drawWrappedText(titleText, w / 2, titleY, w - 150, Math.round((isVertical ? 88 : 58) * titleMult));
                 ctx.restore();
 
-                // Dual Names & Roles
-                const namesY = isStory ? 680 : 485;
-                ctx.fillStyle = "#ffffff";
-                ctx.font = isStory ? "900 44px Inter, sans-serif" : "900 34px Inter, sans-serif";
-                ctx.fillText(`${c1.name.toUpperCase()}  ×  ${c2.name.toUpperCase()}`, cx, namesY);
+                if (calloutText) {
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `800 ${isVertical ? 26 : 18}px Inter, sans-serif`;
+                    ctx.fillText(calloutText, w / 2, titleY + (isVertical ? 115 : 72));
+                }
 
-                ctx.fillStyle = accent.primary;
-                ctx.font = "800 22px Inter, sans-serif";
-                ctx.fillText("PHX DUAL / COLLAB BROADCAST", cx, namesY + (isStory ? 46 : 36));
-            } else {
-                const r = isStory ? 168 : 118;
-                drawCreatorAvatar(ctx, cx, avatarY, r, c1, imageCache.customAvatar1, accent);
-
-                const namesY = isStory ? 710 : 505;
-                ctx.fillStyle = "#ffffff";
-                ctx.font = isStory ? "900 62px Inter, sans-serif" : "900 48px Inter, sans-serif";
-                ctx.fillText(c1.name.toUpperCase(), cx, namesY);
-
-                ctx.fillStyle = accent.primary;
-                ctx.font = "800 24px Inter, sans-serif";
-                ctx.fillText(c1.role.toUpperCase(), cx, namesY + (isStory ? 50 : 38));
-            }
-
-            // Neon Divider
-            const divY = isStory ? 810 : 582;
-            const divGrad = ctx.createLinearGradient(cx - 280, divY, cx + 280, divY);
-            divGrad.addColorStop(0, "rgba(255,140,0,0)");
-            divGrad.addColorStop(0.5, accent.primary);
-            divGrad.addColorStop(1, "rgba(255,140,0,0)");
-            ctx.strokeStyle = divGrad;
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(cx - 280, divY);
-            ctx.lineTo(cx + 280, divY);
-            ctx.stroke();
-
-            // Main Headline with Drop Shadow
-            const headlineY = divY + (isStory ? 95 : 62);
-            const fontSize = isStory ? 82 : 58;
-            ctx.font = `900 ${fontSize}px Inter, sans-serif`;
-            const lines = wrapMultilineText(ctx, state.headline.toUpperCase(), W - 150);
-
-            ctx.save();
-            ctx.shadowColor = "rgba(0, 0, 0, 0.85)";
-            ctx.shadowBlur = 18;
-            ctx.shadowOffsetY = 6;
-            ctx.fillStyle = "#ffffff";
-            lines.slice(0, 3).forEach((line, i) => {
-                ctx.fillText(line, cx, headlineY + i * (fontSize * 1.14));
-            });
-            ctx.restore();
-
-            // Info Cards (Game & Schedule/Handle)
-            const cardStartY = isStory ? 1300 : 775;
-            const cardW = W - 170;
-            const cardH = isStory ? 115 : 86;
-
-            // Card 1: Game / Category
-            roundRect(ctx, cx - cardW / 2, cardStartY, cardW, cardH, 18);
-            ctx.fillStyle = "rgba(20, 20, 25, 0.92)";
-            ctx.fill();
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            roundRect(ctx, cx - cardW / 2, cardStartY, 10, cardH, 6);
-            ctx.fillStyle = accent.primary;
-            ctx.fill();
-
-            ctx.textAlign = "left";
-            ctx.fillStyle = "#a1a1aa";
-            ctx.font = "700 19px Inter, sans-serif";
-            ctx.fillText("GAME / CATEGORY", cx - cardW / 2 + 36, cardStartY + (isStory ? 35 : 26));
-
-            ctx.fillStyle = "#ffffff";
-            ctx.font = isStory ? "900 34px Inter, sans-serif" : "900 26px Inter, sans-serif";
-            ctx.fillText(state.game.toUpperCase(), cx - cardW / 2 + 36, cardStartY + (isStory ? 76 : 58));
-
-            // Card 2: Time & Handle
-            const card2Y = cardStartY + cardH + (isStory ? 24 : 16);
-            roundRect(ctx, cx - cardW / 2, card2Y, cardW, cardH, 18);
-            ctx.fillStyle = "rgba(20, 20, 25, 0.92)";
-            ctx.fill();
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
-            ctx.stroke();
-
-            roundRect(ctx, cx - cardW / 2, card2Y, 10, cardH, 6);
-            ctx.fillStyle = accent.secondary;
-            ctx.fill();
-
-            ctx.fillStyle = "#a1a1aa";
-            ctx.font = "700 19px Inter, sans-serif";
-            ctx.fillText("SCHEDULE & STREAM CHANNEL", cx - cardW / 2 + 36, card2Y + (isStory ? 35 : 26));
-
-            ctx.fillStyle = accent.primary;
-            ctx.font = isStory ? "900 31px Inter, sans-serif" : "900 24px Inter, sans-serif";
-            ctx.fillText(`${state.time.toUpperCase()}  •  ${state.footer.toLowerCase()}`, cx - cardW / 2 + 36, card2Y + (isStory ? 76 : 58));
-        }
-
-        // Layout for 1920x1080 (Twitch / OBS Widescreen Banner)
-        function drawLandscapeBanner(W, H, accent, c1, c2) {
-            const leftX = 115;
-
-            // Top Brand Header
-            drawTopBrandMark(ctx, leftX + 20, 120, 42, accent);
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "900 24px Inter, sans-serif";
-            ctx.textAlign = "left";
-            ctx.textBaseline = "middle";
-            ctx.fillText("PHOENIX FORCE ESPORTS  //  OFFICIAL BROADCAST", leftX + 56, 120);
-
-            // Status Badge Pill
-            const badgeY = 205;
-            const badgeText = (state.badge || "🔴 LIVE NOW").toUpperCase();
-            ctx.font = "900 30px Inter, sans-serif";
-            const badgeW = Math.min(980, ctx.measureText(badgeText).width + 72);
-            const badgeH = 64;
-
-            const badgeGrad = ctx.createLinearGradient(leftX, badgeY, leftX + badgeW, badgeY);
-            badgeGrad.addColorStop(0, accent.secondary);
-            badgeGrad.addColorStop(1, accent.primary);
-
-            ctx.save();
-            ctx.shadowColor = accent.primary;
-            ctx.shadowBlur = 24;
-            roundRect(ctx, leftX, badgeY - badgeH / 2, badgeW, badgeH, 14);
-            ctx.fillStyle = badgeGrad;
-            ctx.fill();
-            ctx.restore();
-
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText(badgeText, leftX + 36, badgeY + 2);
-
-            // Headline
-            ctx.save();
-            ctx.shadowColor = "rgba(0,0,0,0.85)";
-            ctx.shadowBlur = 18;
-            ctx.shadowOffsetY = 6;
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "900 82px Inter, sans-serif";
-            const lines = wrapMultilineText(ctx, state.headline.toUpperCase(), 980);
-            lines.slice(0, 3).forEach((line, i) => {
-                ctx.fillText(line, leftX, 345 + i * 94);
-            });
-            ctx.restore();
-
-            // Bottom-Left Info Cards
-            const cardY = 685;
-            const cardW = 475;
-            const cardH = 135;
-
-            // Game Card
-            roundRect(ctx, leftX, cardY, cardW, cardH, 18);
-            ctx.fillStyle = "rgba(20, 20, 25, 0.92)";
-            ctx.fill();
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            roundRect(ctx, leftX, cardY, 10, cardH, 6);
-            ctx.fillStyle = accent.primary;
-            ctx.fill();
-
-            ctx.fillStyle = "#a1a1aa";
-            ctx.font = "700 20px Inter, sans-serif";
-            ctx.fillText("GAME / CATEGORY", leftX + 36, cardY + 42);
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "900 32px Inter, sans-serif";
-            ctx.fillText(state.game.toUpperCase(), leftX + 36, cardY + 90);
-
-            // Schedule Card
-            const card2X = leftX + cardW + 28;
-            roundRect(ctx, card2X, cardY, cardW, cardH, 18);
-            ctx.fillStyle = "rgba(20, 20, 25, 0.92)";
-            ctx.fill();
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
-            ctx.stroke();
-
-            roundRect(ctx, card2X, cardY, 10, cardH, 6);
-            ctx.fillStyle = accent.secondary;
-            ctx.fill();
-
-            ctx.fillStyle = "#a1a1aa";
-            ctx.font = "700 20px Inter, sans-serif";
-            ctx.fillText("TIME / SCHEDULE", card2X + 36, cardY + 42);
-            ctx.fillStyle = accent.primary;
-            ctx.font = "900 32px Inter, sans-serif";
-            ctx.fillText(state.time.toUpperCase(), card2X + 36, cardY + 90);
-
-            // Right Side Creator Showcase
-            const rightCx = 1500;
-            const avatarY = 425;
-
-            if (state.collabMode) {
-                const r = 135;
-                const offset = 165;
-                drawCreatorAvatar(ctx, rightCx - offset, avatarY, r, c1, imageCache.customAvatar1, accent);
-                drawCreatorAvatar(ctx, rightCx + offset, avatarY, r, c2, imageCache.customAvatar2, accent);
-
-                ctx.save();
-                ctx.fillStyle = "#141419";
-                ctx.beginPath();
-                ctx.arc(rightCx, avatarY, 42, 0, Math.PI * 2);
+                const infoY = isVertical ? 1370 : 845;
+                ctx.fillStyle = "rgba(17, 19, 25, 0.88)";
+                roundRect(ctx, 110, infoY - 58, w - 220, isVertical ? 130 : 94, 20);
                 ctx.fill();
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = accent.primary;
+                ctx.strokeStyle = `${accentColor}77`;
+                ctx.lineWidth = 2;
+                roundRect(ctx, 110, infoY - 58, w - 220, isVertical ? 130 : 94, 20);
                 ctx.stroke();
 
-                ctx.textAlign = "center";
-                ctx.fillStyle = accent.primary;
-                ctx.font = "900 36px Inter, sans-serif";
-                ctx.fillText("×", rightCx, avatarY + 2);
+                ctx.fillStyle = "#F3F4F6";
+                ctx.font = `700 ${isVertical ? 32 : 23}px Inter, sans-serif`;
+                ctx.fillText(`🎮 ${gameText}   |   ⏰ ${timeText}`, w / 2, infoY + (isVertical ? 16 : -2));
+
+                const footerY = isVertical ? 1730 : 980;
+                ctx.fillStyle = accentColor;
+                ctx.font = `900 ${isCollab ? (isVertical ? 26 : 19) : (isVertical ? 38 : 26)}px '${fontFamily}', sans-serif`;
+                ctx.fillText(linkText, w / 2, footerY);
+
+                ctx.fillStyle = "#9CA3AF";
+                ctx.font = `600 ${isVertical ? 24 : 17}px Inter, sans-serif`;
+                ctx.fillText("discord.gg/dVAChyHX4j  •  @phoenixforceg", w / 2, footerY + (isVertical ? 48 : 34));
+
+            } else {
+                // Horizontal Layouts (1920x1080, 1280x720, 960x540)
+                const scaleF = w / 1920;
+                const leftX = Math.round(130 * scaleF);
+                const rightX = isCollab ? Math.round(1390 * scaleF) : Math.round(1460 * scaleF);
+
+                if (teamLogoImg) {
+                    const lw = Math.round(92 * scaleF);
+                    ctx.drawImage(teamLogoImg, leftX, Math.round(105 * scaleF), lw, lw);
+                } else {
+                    drawPhoenixVector(leftX + Math.round(44 * scaleF), Math.round(150 * scaleF), Math.round(38 * scaleF));
+                }
+
+                ctx.textAlign = "left";
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${Math.round(34 * scaleF)}px Orbitron, sans-serif`;
+                ctx.fillText("PHOENIX FORCE", leftX + Math.round(112 * scaleF), Math.round(162 * scaleF));
+
+                if (badgeText) {
+                    ctx.font = `900 ${Math.round(26 * scaleF)}px Orbitron, sans-serif`;
+                    const bw = ctx.measureText(badgeText).width + Math.round(70 * scaleF);
+                    const bh = Math.round(50 * scaleF);
+                    const by = Math.round(255 * scaleF);
+                    ctx.save();
+                    ctx.shadowColor = secondaryColor;
+                    ctx.shadowBlur = 18 * glowMult;
+                    ctx.fillStyle = secondaryColor;
+                    roundRect(ctx, leftX, by, bw, bh, 25 * scaleF);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillText(`●  ${badgeText}`, leftX + Math.round(24 * scaleF), by + Math.round(34 * scaleF));
+                }
+
+                ctx.save();
+                ctx.shadowColor = accentColor;
+                ctx.shadowBlur = 24 * glowMult;
+                ctx.fillStyle = "#FFFFFF";
+                const hTitlePx = Math.round(80 * scaleF * titleMult);
+                ctx.font = `900 ${hTitlePx}px '${fontFamily}', sans-serif`;
+                drawWrappedText(titleText, leftX, Math.round(445 * scaleF), Math.round(950 * scaleF), Math.round(92 * scaleF * titleMult));
                 ctx.restore();
 
+                if (calloutText) {
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `800 ${Math.round(26 * scaleF)}px Inter, sans-serif`;
+                    ctx.fillText(calloutText, leftX, Math.round(575 * scaleF));
+                }
+
+                ctx.fillStyle = "#E5E7EB";
+                ctx.font = `700 ${Math.round(34 * scaleF)}px Inter, sans-serif`;
+                ctx.fillText(`🎮  ${gameText}`, leftX, Math.round(670 * scaleF));
+                ctx.fillStyle = accentColor;
+                ctx.fillText(`⏰  ${timeText}`, leftX, Math.round(730 * scaleF));
+
+                ctx.fillStyle = "rgba(17, 19, 25, 0.9)";
+                const pillW = Math.round(860 * scaleF);
+                const pillH = Math.round(80 * scaleF);
+                const pillY = Math.round(825 * scaleF);
+                roundRect(ctx, leftX, pillY, pillW, pillH, 16 * scaleF);
+                ctx.fill();
+                ctx.strokeStyle = accentColor;
+                ctx.lineWidth = Math.max(2, Math.round(3 * scaleF));
+                roundRect(ctx, leftX, pillY, pillW, pillH, 16 * scaleF);
+                ctx.stroke();
+
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${isCollab ? Math.round(24 * scaleF) : Math.round(34 * scaleF)}px '${fontFamily}', sans-serif`;
+                ctx.fillText(linkText, leftX + Math.round(28 * scaleF), pillY + Math.round(52 * scaleF));
+
+                const avatarY = Math.round(470 * scaleF) + avatarOffsetY;
+                const baseR = isCollab ? Math.round(145 * scaleF) : Math.round(210 * scaleF);
+                const r = Math.round(baseR * avatarMult);
+
                 ctx.textAlign = "center";
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "900 42px Inter, sans-serif";
-                ctx.fillText(`${c1.name.toUpperCase()} × ${c2.name.toUpperCase()}`, rightCx, 650);
+                if (isCollab) {
+                    const spread = Math.round(185 * scaleF);
+                    drawCreatorAvatar(rightX - spread, avatarY, r, s1Name, avatar1Img, glowMult);
+                    drawCreatorAvatar(rightX + spread, avatarY, r, s2Name, avatar2Img, glowMult);
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `900 ${Math.round(54 * scaleF)}px Orbitron, sans-serif`;
+                    ctx.fillText("×", rightX, avatarY + Math.round(16 * scaleF));
+                } else {
+                    drawCreatorAvatar(rightX, avatarY, r, s1Name, avatar1Img, glowMult);
+                }
 
-                ctx.fillStyle = accent.primary;
-                ctx.font = "800 22px Inter, sans-serif";
-                ctx.fillText("PHX DUAL / COLLAB STREAM", rightCx, 702);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${isCollab ? Math.round(38 * scaleF) : Math.round(56 * scaleF)}px '${fontFamily}', sans-serif`;
+                ctx.fillText(isCollab ? `${s1Name} × ${s2Name}` : s1Name, rightX, avatarY + r + Math.round(75 * scaleF));
 
-                ctx.fillStyle = "#d4d4d8";
-                ctx.font = "700 22px Inter, sans-serif";
-                ctx.fillText(state.footer.toLowerCase(), rightCx, 755);
+                ctx.fillStyle = accentColor;
+                ctx.font = `700 ${Math.round(24 * scaleF)}px Inter, sans-serif`;
+                ctx.fillText(isCollab ? "PHOENIX FORCE COLLAB" : s1Data.role, rightX, avatarY + r + Math.round(118 * scaleF));
+            }
+        }
+
+        // Download PNG
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const s1 = document.getElementById('streamerSelect').value;
+            const fmt = document.getElementById('formatSelect').value;
+            const prefix = studioMode === "schedule" ? "PHX_Weekly_Schedule" : `PHX_${s1}`;
+            const link = document.createElement('a');
+            link.download = `${prefix}_${fmt}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+        });
+
+        // Copy Image to Clipboard
+        document.getElementById('copyImgBtn').addEventListener('click', () => {
+            canvas.toBlob(async (blob) => {
+                try {
+                    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                    const label = document.getElementById('copyImgText');
+                    label.textContent = "Copied! ✓";
+                    setTimeout(() => label.textContent = "Copy Image", 2000);
+                } catch (err) {
+                    alert("Ο browser μπλόκαρε το auto-copy. Πάτα Download PNG!");
+                }
+            }, 'image/png');
+        });
+
+        // Copy Social Caption
+        document.getElementById('copyCaptionBtn').addEventListener('click', () => {
+            let caption = "";
+            if (studioMode === "schedule") {
+                const lines = scheduleSlots.map(s => `📅 ${s.day} (${s.time}) ➔ ${s.streamer} [${s.game}]`).join('\n');
+                caption = `🔥 ΕΒΔΟΜΑΔΙΑΙΟ ΠΡΟΓΡΑΜΜΑ PHOENIX FORCE 🔥\n\n${lines}\n\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
             } else {
-                const r = 180;
-                drawCreatorAvatar(ctx, rightCx, avatarY, r, c1, imageCache.customAvatar1, accent);
-
-                ctx.textAlign = "center";
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "900 54px Inter, sans-serif";
-                ctx.fillText(c1.name.toUpperCase(), rightCx, 685);
-
-                ctx.fillStyle = accent.primary;
-                ctx.font = "800 24px Inter, sans-serif";
-                ctx.fillText(c1.role.toUpperCase(), rightCx, 738);
-
-                ctx.fillStyle = "#d4d4d8";
-                ctx.font = "700 25px Inter, sans-serif";
-                ctx.fillText(state.footer.toLowerCase(), rightCx, 790);
-            }
-        }
-
-        // UI Event Bindings
-        function bindEvents() {
-            // Format buttons
-            document.querySelectorAll(".format-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    document.querySelectorAll(".format-btn").forEach(b => {
-                        b.classList.remove("border-phx-orange", "bg-phx-orange/15", "text-white", "shadow-[0_0_15px_rgba(255,140,0,0.2)]");
-                        b.classList.add("border-zinc-800", "bg-phx-card/80", "text-zinc-300");
-                    });
-                    btn.classList.remove("border-zinc-800", "bg-phx-card/80", "text-zinc-300");
-                    btn.classList.add("border-phx-orange", "bg-phx-orange/15", "text-white", "shadow-[0_0_15px_rgba(255,140,0,0.2)]");
-
-                    state.format = btn.dataset.format;
-                    const meta = FORMATS[state.format].label;
-                    document.getElementById("resolutionBadge").textContent = meta;
-                    document.getElementById("previewDimTag").textContent = meta;
-                    renderCanvas();
-                });
-            });
-
-            // Template buttons
-            document.querySelectorAll(".template-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    document.querySelectorAll(".template-btn").forEach(b => {
-                        b.classList.remove("border-phx-red", "bg-phx-red/15", "text-white");
-                        b.classList.add("border-zinc-800", "bg-phx-card/80", "text-zinc-300");
-                    });
-                    btn.classList.remove("border-zinc-800", "bg-phx-card/80", "text-zinc-300");
-                    btn.classList.add("border-phx-red", "bg-phx-red/15", "text-white");
-
-                    const tplKey = btn.dataset.template;
-                    const tpl = TEMPLATES[tplKey];
-                    state.template = tplKey;
-                    state.badge = tpl.badge;
-                    state.headline = tpl.headline;
-
-                    document.getElementById("badgeInput").value = state.badge;
-                    document.getElementById("headlineInput").value = state.headline;
-                    document.getElementById("previewTemplateTag").textContent = `TEMPLATE: ${tpl.tag}`;
-
-                    // Sync accent
-                    selectAccent(tpl.accent);
-                    renderCanvas();
-                });
-            });
-
-            // Collab Mode Toggle
-            document.getElementById("collabToggle").addEventListener("change", (e) => {
-                state.collabMode = e.target.checked;
-                const c2Box = document.getElementById("creator2Box");
-                if (state.collabMode) {
-                    c2Box.classList.remove("hidden");
-                    state.badge = "🤝 DUAL / COLLAB STREAM";
-                    document.getElementById("badgeInput").value = state.badge;
-                } else {
-                    c2Box.classList.add("hidden");
-                }
-                updateAutoCreatorFields();
-                renderCanvas();
-            });
-
-            // Creator 1 & 2 Dropdowns
-            document.getElementById("creator1Select").addEventListener("change", (e) => {
-                state.creator1Id = e.target.value;
-                updateAutoCreatorFields();
-                renderCanvas();
-            });
-            document.getElementById("creator2Select").addEventListener("change", (e) => {
-                state.creator2Id = e.target.value;
-                updateAutoCreatorFields();
-                renderCanvas();
-            });
-
-            // Custom Avatar 1 Upload
-            const av1Input = document.getElementById("avatar1Upload");
-            const clearAv1 = document.getElementById("clearAvatar1Btn");
-            av1Input.addEventListener("change", (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        imageCache.customAvatar1 = img;
-                        document.getElementById("avatar1Label").textContent = `✅ ${file.name}`;
-                        clearAv1.classList.remove("hidden");
-                        renderCanvas();
-                    };
-                    img.src = ev.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-            clearAv1.addEventListener("click", () => {
-                imageCache.customAvatar1 = null;
-                av1Input.value = "";
-                document.getElementById("avatar1Label").textContent = "📷 Custom Avatar 1 (Auto Repo Logo)";
-                clearAv1.classList.add("hidden");
-                renderCanvas();
-            });
-
-            // Custom Avatar 2 Upload
-            const av2Input = document.getElementById("avatar2Upload");
-            const clearAv2 = document.getElementById("clearAvatar2Btn");
-            av2Input.addEventListener("change", (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        imageCache.customAvatar2 = img;
-                        document.getElementById("avatar2Label").textContent = `✅ ${file.name}`;
-                        clearAv2.classList.remove("hidden");
-                        renderCanvas();
-                    };
-                    img.src = ev.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-            clearAv2.addEventListener("click", () => {
-                imageCache.customAvatar2 = null;
-                av2Input.value = "";
-                document.getElementById("avatar2Label").textContent = "📷 Custom Avatar 2 (Auto Repo Logo)";
-                clearAv2.classList.add("hidden");
-                renderCanvas();
-            });
-
-            // Custom Background Upload & Clear
-            const bgUpload = document.getElementById("bgUpload");
-            const clearBgBtn = document.getElementById("clearBgBtn");
-            bgUpload.addEventListener("change", (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        imageCache.customBg = img;
-                        document.getElementById("bgFileName").textContent = `✅ ${file.name}`;
-                        clearBgBtn.classList.remove("hidden");
-                        renderCanvas();
-                        showToast(`Φορτώθηκε background: ${file.name}`);
-                    };
-                    img.src = ev.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-
-            clearBgBtn.addEventListener("click", () => {
-                imageCache.customBg = null;
-                bgUpload.value = "";
-                document.getElementById("bgFileName").textContent = "Προεπιλογή: Phoenix Dark Embers Grid";
-                clearBgBtn.classList.add("hidden");
-                renderCanvas();
-                showToast("Επαναφορά στο Phoenix Dark Embers background.");
-            });
-
-            // Darken & Blur Sliders
-            document.getElementById("darkenSlider").addEventListener("input", (e) => {
-                state.darken = parseInt(e.target.value, 10);
-                document.getElementById("darkenVal").textContent = `${state.darken}%`;
-                renderCanvas();
-            });
-
-            document.getElementById("blurSlider").addEventListener("input", (e) => {
-                state.blur = parseInt(e.target.value, 10);
-                document.getElementById("blurVal").textContent = `${state.blur}px`;
-                renderCanvas();
-            });
-
-            // Accent Color Buttons
-            function selectAccent(accentKey) {
-                state.accent = accentKey;
-                document.querySelectorAll(".accent-btn").forEach(b => {
-                    b.classList.remove("border-phx-orange", "bg-phx-orange/15", "text-white");
-                    b.classList.add("border-zinc-800", "bg-phx-card", "text-zinc-300");
-                    if (b.dataset.accent === accentKey) {
-                        b.classList.remove("border-zinc-800", "bg-phx-card", "text-zinc-300");
-                        b.classList.add("border-phx-orange", "bg-phx-orange/15", "text-white");
-                    }
-                });
+                const s1 = document.getElementById('streamerSelect').value;
+                const s2 = document.getElementById('streamer2Select').value;
+                const isCollab = document.getElementById('collabToggle').checked;
+                const title = document.getElementById('titleInput').value;
+                const game = document.getElementById('gameInput').value;
+                const link = document.getElementById('linkInput').value;
+                const who = isCollab ? `${s1} × ${s2}` : s1;
+                caption = `🔥 ${who} IS LIVE! 🔥\n🎮 ${game} — ${title}\n📺 ${link}\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
             }
 
-            document.querySelectorAll(".accent-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    selectAccent(btn.dataset.accent);
-                    renderCanvas();
-                });
+            navigator.clipboard.writeText(caption).then(() => {
+                const btn = document.getElementById('copyCaptionBtn');
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<span>✓</span> <span>Caption Copied!</span>';
+                setTimeout(() => btn.innerHTML = orig, 2000);
             });
+        });
 
-            // Text Inputs
-            document.getElementById("badgeInput").addEventListener("input", (e) => {
-                state.badge = e.target.value;
-                renderCanvas();
-            });
-            document.getElementById("headlineInput").addEventListener("input", (e) => {
-                state.headline = e.target.value;
-                renderCanvas();
-            });
-            document.getElementById("gameInput").addEventListener("input", (e) => {
-                state.game = e.target.value;
-                renderCanvas();
-            });
-            document.getElementById("timeInput").addEventListener("input", (e) => {
-                state.time = e.target.value;
-                renderCanvas();
-            });
-            document.getElementById("footerInput").addEventListener("input", (e) => {
-                state.footer = e.target.value;
-                renderCanvas();
-            });
-
-            // 1. Copy Image to Clipboard (Instant Ctrl+V in Discord)
-            document.getElementById("copyImageBtn").addEventListener("click", async () => {
-                try {
-                    renderCanvas();
-                    canvas.toBlob(async (blob) => {
-                        if (!blob) {
-                            showToast("Αποτυχία δημιουργίας εικόνας.");
-                            return;
-                        }
-                        if (navigator.clipboard && window.ClipboardItem) {
-                            await navigator.clipboard.write([
-                                new ClipboardItem({ "image/png": blob })
-                            ]);
-                            showToast("📋 Η εικόνα αντιγράφηκε! Πάτα Ctrl+V στο Discord!");
-                        } else {
-                            showToast("⚠️ Ο browser δεν υποστηρίζει Clipboard Image. Πάτα Download PNG.");
-                        }
-                    }, "image/png", 1.0);
-                } catch (err) {
-                    console.error("Clipboard image error:", err);
-                    showToast("⚠️ Αποκλεισμός clipboard (iFrame/HTTP). Χρησιμοποίησε Download PNG.");
-                }
-            });
-
-            // 2. Copy Social Media Caption (Greek/English + Hashtags)
-            document.getElementById("copyCaptionBtn").addEventListener("click", () => {
-                const c1 = getCreator(state.creator1Id);
-                const c2 = getCreator(state.creator2Id);
-                const cleanHeadline = state.headline.replace(/\r?\n/g, " ").trim();
-
-                let caption = "";
-                if (state.collabMode) {
-                    caption = `🔥 ${state.badge} 🔥\n\n` +
-                        `🎮 ${cleanHeadline}\n` +
-                        `🤝 ${c1.name} × ${c2.name}\n` +
-                        `🕹️ Game: ${state.game}\n` +
-                        `⏰ ${state.time}\n\n` +
-                        `📺 Watch Live:\n` +
-                        `👉 https://${c1.link}\n` +
-                        `👉 https://${c2.link}\n\n` +
-                        `💬 Join our Discord: https://discord.gg/dVAChyHX4j\n` +
-                        `#PhoenixForce #PHX #GreekGaming #GreekStreamers #TwitchGR`;
-                } else {
-                    caption = `🔥 ${state.badge} 🔥\n\n` +
-                        `🎮 ${cleanHeadline}\n` +
-                        `👤 Streamer: ${c1.name} (${c1.role})\n` +
-                        `🕹️ Game: ${state.game}\n` +
-                        `⏰ ${state.time}\n\n` +
-                        `📺 Μπες στο stream τώρα: https://${state.footer}\n` +
-                        `💬 Discord Community: https://discord.gg/dVAChyHX4j\n\n` +
-                        `#PhoenixForce #PHX #GreekGaming #GreekStreamers #TwitchGR`;
-                }
-
-                // Use reliable textarea + execCommand fallback for iframe/local compatibility
-                const tempArea = document.createElement("textarea");
-                tempArea.value = caption;
-                tempArea.style.position = "fixed";
-                tempArea.style.opacity = "0";
-                document.body.appendChild(tempArea);
-                tempArea.select();
-                try {
-                    document.execCommand("copy");
-                    showToast("📝 Το Caption με τα #PhoenixForce hashtags αντιγράφηκε!");
-                } catch (err) {
-                    showToast("Σφάλμα αντιγραφής κειμένου.");
-                }
-                document.body.removeChild(tempArea);
-            });
-
-            // 3. Download High-Res PNG
-            document.getElementById("downloadBtn").addEventListener("click", () => {
-                try {
-                    renderCanvas();
-                    const c1 = getCreator(state.creator1Id).name.replace(/[^a-zA-Z0-9_]/g, "");
-                    const c2 = getCreator(state.creator2Id).name.replace(/[^a-zA-Z0-9_]/g, "");
-                    const creatorTag = state.collabMode ? `${c1}_x_${c2}` : c1;
-                    const fmtTag = FORMATS[state.format].name;
-                    const fileName = `PHX_${creatorTag}_${fmtTag}.png`;
-
-                    const link = document.createElement("a");
-                    link.download = fileName;
-                    link.href = canvas.toDataURL("image/png", 1.0);
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    showToast(`⬇️ Κατέβηκε: ${fileName}`);
-                } catch (err) {
-                    console.error("Download error:", err);
-                    showToast("Σφάλμα κατά το κατέβασμα της εικόνας.");
-                }
-            });
-        }
-
-        // Bootstrap Application
-        window.onload = () => {
-            initRosterDropdowns();
-            bindEvents();
-            preloadRepoImages();
-            renderCanvas();
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(() => renderCanvas());
-            }
-        };
+        // Init
+        document.fonts.ready.then(() => {
+            loadCreatorAvatars();
+            renderBanner();
+        });
     </script>
 </body>
 </html>
