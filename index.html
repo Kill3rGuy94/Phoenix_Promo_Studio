@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix Promo Studio v3 | Phoenix Force</title>
+    <title>Phoenix Promo Studio v4 | Phoenix Force</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,20 +48,20 @@
                 <div>
                     <h1 class="font-orbitron font-black text-base sm:text-lg tracking-wider text-white flex items-center gap-2">
                         PHOENIX <span class="text-phoenix-500">PROMO STUDIO</span>
-                        <span class="text-[10px] bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-2 py-0.5 rounded font-sans font-bold">v3 ULTIMATE</span>
+                        <span class="text-[10px] bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-2 py-0.5 rounded font-sans font-bold">v4 AUTO-POST</span>
                     </h1>
-                    <p class="text-[11px] text-gray-400 hidden sm:block">Custom Banners, Thumbnails & Weekly Schedules for Phoenix Force</p>
+                    <p class="text-[11px] text-gray-400 hidden sm:block">Custom Banners, Schedules & Direct Social Posting for Phoenix Force</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2 sm:gap-3">
-                <button id="copyCaptionBtn" class="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
-                    <span>📝</span> <span class="hidden md:inline">Copy Caption</span>
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <button id="quickDiscordTopBtn" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-3 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-[0_0_15px_rgba(88,101,242,0.4)]">
+                    <span>🚀</span> <span class="hidden sm:inline">Post Discord</span>
                 </button>
-                <button id="copyImgBtn" class="bg-gray-800 hover:bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                <button id="copyImgBtn" class="bg-gray-800 hover:bg-phoenix-500/20 text-phoenix-500 border border-phoenix-500/40 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
                     <span>📋</span> <span id="copyImgText">Copy Image</span>
                 </button>
-                <button id="downloadBtn" class="bg-gradient-to-r from-phoenix-500 to-phoenix-red hover:opacity-95 text-white px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-black tracking-wide shadow-[0_0_20px_rgba(255,140,0,0.45)] transition transform hover:scale-[1.02] flex items-center gap-1.5">
-                    <span>⬇</span> Download PNG
+                <button id="downloadBtn" class="bg-gradient-to-r from-phoenix-500 to-phoenix-red hover:opacity-95 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-black tracking-wide shadow-[0_0_20px_rgba(255,140,0,0.45)] transition transform hover:scale-[1.02] flex items-center gap-1.5">
+                    <span>⬇</span> PNG
                 </button>
             </div>
         </div>
@@ -128,7 +128,6 @@
                         <option value="demon_gekkouga">demon_gekkouga (Creator)</option>
                     </select>
 
-                    <!-- Second Creator -->
                     <div id="collabStreamerBox" class="hidden mt-2">
                         <select id="streamer2Select" class="w-full bg-black/50 border border-phoenix-500/50 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-phoenix-500">
                             <option value="YipYipMan_">× YipYipMan_ (Streamers Manager)</option>
@@ -153,7 +152,6 @@
                         <input type="text" id="gameInput" value="League of Legends" placeholder="Παιχνίδι" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
                         <input type="text" id="timeInput" value="ΣΗΜΕΡΑ • 21:00" placeholder="Ώρα / Μέρα" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-phoenix-500">
                     </div>
-                    <!-- Quick Game Tag Presets -->
                     <div class="flex flex-wrap gap-1.5 pt-0.5">
                         <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="League of Legends">LoL</button>
                         <button type="button" class="game-pill text-[10px] bg-gray-800 hover:bg-phoenix-500/20 hover:text-phoenix-500 border border-gray-700 px-2 py-0.5 rounded transition" data-game="AION2">AION2</button>
@@ -280,6 +278,52 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 9. DIRECT SOCIAL POSTING & SHARE HUB -->
+            <div id="socialShareSection" class="border-t border-phoenix-500/40 pt-4 space-y-3 bg-gradient-to-b from-phoenix-500/5 to-transparent -mx-2 px-2 pb-2 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <label class="text-[11px] font-black uppercase tracking-wider text-phoenix-500 flex items-center gap-1.5">
+                        <span>📡</span> 9. Direct Post & Social Share
+                    </label>
+                    <button type="button" id="copyCaptionBtn" class="text-[11px] text-gray-300 hover:text-phoenix-500 font-bold underline">
+                        Copy Caption 📝
+                    </button>
+                </div>
+
+                <!-- Discord Webhook Auto-Post -->
+                <div class="bg-black/60 border border-[#5865F2]/40 rounded-xl p-3 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-[#8EA1E1] flex items-center gap-1.5">💬 Discord Auto-Post (https://discord.com/api/webhooks/1572584316725108918/fMkxGqfDJLgrR7WavO-kxXu4peCMMouD_qbHsEJLpwMVN1uneO7oxEds2WKtxefsfbc4)</span>
+                        <select id="discordPingSelect" class="bg-gray-900 border border-gray-700 rounded px-2 py-0.5 text-[10px] text-gray-300">
+                            <option value="">No Ping</option>
+                            <option value="@everyone">@everyone</option>
+                            <option value="@here">@here</option>
+                        </select>
+                    </div>
+                    <input type="password" id="discordWebhookInput" placeholder="Paste Discord Webhook URL (αποθηκεύεται αυτόματα)..." class="w-full bg-gray-950 border border-gray-800 rounded-lg px-2.5 py-1.5 text-[11px] text-white focus:outline-none focus:border-[#5865F2]">
+                    <button type="button" id="postDiscordBtn" class="w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold py-2 rounded-lg text-xs transition flex items-center justify-center gap-2 shadow-lg">
+                        <span>🚀</span> <span id="postDiscordText">Post Banner Directly to Discord</span>
+                    </button>
+                    <p id="discordStatusMsg" class="hidden text-[11px] text-center font-semibold"></p>
+                </div>
+
+                <!-- Platform Quick Share Buttons -->
+                <div class="grid grid-cols-3 gap-2">
+                    <button type="button" id="shareXBtn" class="bg-gray-900 hover:bg-black text-white border border-gray-700 hover:border-white/50 py-2 px-2 rounded-lg text-xs font-bold transition flex flex-col items-center justify-center gap-0.5">
+                        <span class="text-sm">𝕏</span>
+                        <span class="text-[10px]">Post on X</span>
+                    </button>
+                    <button type="button" id="shareFbBtn" class="bg-[#1877F2]/20 hover:bg-[#1877F2]/35 text-[#60A5FA] border border-[#1877F2]/40 py-2 px-2 rounded-lg text-xs font-bold transition flex flex-col items-center justify-center gap-0.5">
+                        <span class="text-sm">📘</span>
+                        <span class="text-[10px]">Facebook</span>
+                    </button>
+                    <button type="button" id="nativeShareBtn" class="bg-gradient-to-tr from-amber-500/20 via-pink-500/20 to-purple-600/20 hover:opacity-90 text-pink-300 border border-pink-500/40 py-2 px-2 rounded-lg text-xs font-bold transition flex flex-col items-center justify-center gap-0.5">
+                        <span class="text-sm">📲</span>
+                        <span class="text-[10px]">IG / TikTok</span>
+                    </button>
+                </div>
+                <p id="shareToastMsg" class="hidden text-[11px] text-center text-phoenix-500 font-semibold bg-phoenix-500/10 border border-phoenix-500/30 rounded-lg py-1.5 px-2"></p>
+            </div>
         </div>
 
         <!-- Right Live Preview Area -->
@@ -301,12 +345,12 @@
         const STREAMERS = {
             "Kill3rGuy94": { role: "LEADER & FOUNDER", game: "League of Legends", link: "twitch.tv/kill3rguy94", logoPath: "logos/Kill3rGuy94.png" },
             "YipYipMan_": { role: "STREAMERS MANAGER", game: "League of Legends", link: "twitch.tv/yipyipman_", logoPath: "logos/YipYipMan_.png" },
-            "YioGki": { role: "CONTENT CREATOR", game: "League of Legends", link: "twitch.tv/yiogki", logoPath: "logos/Yiogki.png" },
-            "catgamer_tv": { role: "CONTENT CREATOR", game: "Variety Gaming", link: "twitch.tv/catgamer_tv", logoPath: "logos/image_91fc9f.png" },
-            "CreepyPuppet_Tv": { role: "CONTENT CREATOR", game: "FPS & Variety", link: "twitch.tv/creepypuppet_tv", logoPath: "logos/image_91fc7c.png" },
-            "FenChris": { role: "CONTENT CREATOR", game: "AION2", link: "twitch.tv/fenchris", logoPath: "logos/Fenchris.png" },
-            "Ghost_R4in": { role: "CONTENT CREATOR", game: "Action & Racing", link: "twitch.tv/ghost_r4in", logoPath: "logos/Ghost.png" },
-            "demon_gekkouga": { role: "CONTENT CREATOR", game: "Variety & Comedy", link: "twitch.tv/demon_gekkouga", logoPath: "logos/Gekkouga.png" }
+            "YioGki": { role: "STREAMER", game: "League of Legends", link: "twitch.tv/yiogki", logoPath: "logos/Yiogki.png" },
+            "catgamer_tv": { role: "STREAMER", game: "Variety Gaming", link: "twitch.tv/catgamer_tv", logoPath: "logos/image_91fc9f.png" },
+            "CreepyPuppet_Tv": { role: "STREAMER", game: "FPS & Variety", link: "twitch.tv/creepypuppet_tv", logoPath: "logos/image_91fc7c.png" },
+            "FenChris": { role: "STREAMER", game: "AION2", link: "twitch.tv/fenchris", logoPath: "logos/Fenchris.png" },
+            "Ghost_R4in": { role: "STREAMER", game: "Action & Racing", link: "twitch.tv/ghost_r4in", logoPath: "logos/Ghost.png" },
+            "demon_gekkouga": { role: "STREAMER", game: "Variety & Comedy", link: "twitch.tv/demon_gekkouga", logoPath: "logos/Gekkouga.png" }
         };
 
         const TEMPLATES = {
@@ -344,6 +388,14 @@
         let customBgImg = null;
         let customAvatar1Override = false;
 
+        // Load saved Discord Webhook from localStorage
+        const webhookInput = document.getElementById('discordWebhookInput');
+        const savedWebhook = localStorage.getItem('phx_discord_webhook');
+        if (savedWebhook) webhookInput.value = savedWebhook;
+        webhookInput.addEventListener('input', (e) => {
+            localStorage.setItem('phx_discord_webhook', e.target.value.trim());
+        });
+
         function tryLoadImage(src, callback) {
             const img = new Image();
             img.crossOrigin = "anonymous";
@@ -365,7 +417,6 @@
             tryLoadImage(STREAMERS[s2].logoPath, (img) => { avatar2Img = img; renderBanner(); });
         }
 
-        // Schedule Rows UI
         function renderScheduleInputs() {
             const container = document.getElementById('scheduleRowsContainer');
             container.innerHTML = '';
@@ -387,9 +438,7 @@
 
             document.querySelectorAll('.sched-inp').forEach(el => {
                 el.addEventListener('input', (e) => {
-                    const idx = e.target.dataset.idx;
-                    const field = e.target.dataset.field;
-                    scheduleSlots[idx][field] = e.target.value;
+                    scheduleSlots[e.target.dataset.idx][e.target.dataset.field] = e.target.value;
                     renderBanner();
                 });
             });
@@ -414,7 +463,6 @@
             }
         });
 
-        // Mode Switching
         document.getElementById('modeStreamBtn').addEventListener('click', () => {
             studioMode = "stream";
             document.getElementById('modeStreamBtn').className = "py-2 rounded-lg text-xs font-black uppercase tracking-wider bg-gradient-to-r from-phoenix-500 to-phoenix-red text-white shadow";
@@ -436,7 +484,6 @@
             renderBanner();
         });
 
-        // Color Swatches
         document.querySelectorAll('.color-swatch').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('border-2', 'border-white'));
@@ -454,7 +501,6 @@
             renderBanner();
         });
 
-        // Game Pills
         document.querySelectorAll('.game-pill').forEach(pill => {
             pill.addEventListener('click', () => {
                 document.getElementById('gameInput').value = pill.dataset.game;
@@ -462,7 +508,6 @@
             });
         });
 
-        // Template & Streamer Auto-Fill
         document.getElementById('templateSelect').addEventListener('change', (e) => {
             const tpl = TEMPLATES[e.target.value];
             if (tpl) {
@@ -489,7 +534,6 @@
             updateStreamerFields();
         });
 
-        // File Uploads
         document.getElementById('bgUpload').addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
@@ -537,28 +581,24 @@
             reader.readAsDataURL(file);
         });
 
-        // Live Inputs & Sliders
         ['formatSelect', 'fontSelect', 'badgeInput', 'titleInput', 'calloutInput', 'gameInput', 'timeInput', 'linkInput', 'schedTitleInput', 'schedSubtitleInput'].forEach(id => {
             document.getElementById(id).addEventListener('input', renderBanner);
         });
 
-        const sliderMappings = [
+        [
             ['darkenSlider', 'darkenVal', '%'],
             ['blurSlider', 'blurVal', 'px'],
             ['titleSizeSlider', 'titleSizeVal', '%'],
             ['glowSlider', 'glowVal', '%'],
             ['avatarScaleSlider', 'avatarScaleVal', '%'],
             ['avatarOffsetSlider', 'avatarOffsetVal', 'px']
-        ];
-
-        sliderMappings.forEach(([sId, vId, unit]) => {
+        ].forEach(([sId, vId, unit]) => {
             document.getElementById(sId).addEventListener('input', (e) => {
                 document.getElementById(vId).textContent = `${e.target.value}${unit}`;
                 renderBanner();
             });
         });
 
-        // Drawing Helpers
         function drawPhoenixVector(cx, cy, size) {
             ctx.save();
             ctx.translate(cx, cy);
@@ -694,7 +734,6 @@
                 }
             }
 
-            // Outer Neon Frame
             ctx.save();
             ctx.shadowColor = accentColor;
             ctx.shadowBlur = 20 * glowMult;
@@ -713,7 +752,6 @@
             const schedTitle = document.getElementById('schedTitleInput').value.toUpperCase() || "WEEKLY STREAM SCHEDULE";
             const schedSub = document.getElementById('schedSubtitleInput').value.toUpperCase() || "PHOENIX FORCE ROSTER";
 
-            // Header Logo
             const topY = isVertical ? 110 : 65;
             if (teamLogoImg) {
                 ctx.drawImage(teamLogoImg, w / 2 - 42, topY - 42, 84, 84);
@@ -721,7 +759,6 @@
                 drawPhoenixVector(w / 2, topY, 36);
             }
 
-            // Main Title
             ctx.save();
             ctx.shadowColor = accentColor;
             ctx.shadowBlur = 25 * glowMult;
@@ -737,7 +774,6 @@
             ctx.textAlign = "center";
             ctx.fillText(schedSub, w / 2, topY + (isVertical ? 160 : 118));
 
-            // Schedule Rows
             const startY = topY + (isVertical ? 235 : 165);
             const footerSpace = isVertical ? 140 : 85;
             const availH = h - startY - footerSpace;
@@ -750,7 +786,6 @@
             scheduleSlots.forEach((slot, i) => {
                 const ry = startY + i * (rowH + rowGap);
 
-                // Row Glass Card
                 ctx.fillStyle = "rgba(15, 18, 26, 0.85)";
                 roundRect(ctx, cardX, ry, cardW, rowH, 16);
                 ctx.fill();
@@ -760,12 +795,10 @@
                 roundRect(ctx, cardX, ry, cardW, rowH, 16);
                 ctx.stroke();
 
-                // Left Accent Bar
                 ctx.fillStyle = i % 2 === 0 ? accentColor : secondaryColor;
                 roundRect(ctx, cardX, ry, 10, rowH, 5);
                 ctx.fill();
 
-                // Day & Time
                 ctx.textAlign = "left";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = accentColor;
@@ -776,20 +809,17 @@
                 ctx.font = `700 ${isVertical ? 24 : 18}px Inter, sans-serif`;
                 ctx.fillText(`⏰ ${slot.time}`, cardX + 34, ry + rowH * 0.72);
 
-                // Streamer Name
                 ctx.textAlign = "center";
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = `900 ${isVertical ? 38 : 28}px '${fontFamily}', sans-serif`;
                 ctx.fillText(slot.streamer, w / 2 + 40, ry + rowH * 0.5);
 
-                // Game Tag
                 ctx.textAlign = "right";
                 ctx.fillStyle = "#9CA3AF";
                 ctx.font = `700 ${isVertical ? 24 : 19}px Inter, sans-serif`;
                 ctx.fillText(`🎮 ${slot.game}`, cardX + cardW - 30, ry + rowH * 0.5);
             });
 
-            // Footer
             ctx.textAlign = "center";
             ctx.fillStyle = "#9CA3AF";
             ctx.font = `700 ${isVertical ? 24 : 17}px Inter, sans-serif`;
@@ -930,7 +960,6 @@
                 ctx.fillText("discord.gg/dVAChyHX4j  •  @phoenixforceg", w / 2, footerY + (isVertical ? 48 : 34));
 
             } else {
-                // Horizontal Layouts (1920x1080, 1280x720, 960x540)
                 const scaleF = w / 1920;
                 const leftX = Math.round(130 * scaleF);
                 const rightX = isCollab ? Math.round(1390 * scaleF) : Math.round(1460 * scaleF);
@@ -1026,6 +1055,43 @@
             }
         }
 
+        // Caption Generator Helper
+        function buildSocialCaption() {
+            if (studioMode === "schedule") {
+                const lines = scheduleSlots.map(s => `📅 ${s.day} (${s.time}) ➔ ${s.streamer} [${s.game}]`).join('\n');
+                return `🔥 ΕΒΔΟΜΑΔΙΑΙΟ ΠΡΟΓΡΑΜΜΑ PHOENIX FORCE 🔥\n\n${lines}\n\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
+            } else {
+                const s1 = document.getElementById('streamerSelect').value;
+                const s2 = document.getElementById('streamer2Select').value;
+                const isCollab = document.getElementById('collabToggle').checked;
+                const title = document.getElementById('titleInput').value;
+                const game = document.getElementById('gameInput').value;
+                const link = document.getElementById('linkInput').value;
+                const who = isCollab ? `${s1} × ${s2}` : s1;
+                return `🔥 ${who} IS LIVE! 🔥\n🎮 ${game} — ${title}\n📺 https://${link.replace(/^https?:\/\//, '')}\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
+            }
+        }
+
+        function showShareToast(msg) {
+            const toast = document.getElementById('shareToastMsg');
+            toast.textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 4500);
+        }
+
+        async function copyCanvasToClipboardSilent() {
+            return new Promise((resolve) => {
+                canvas.toBlob(async (blob) => {
+                    try {
+                        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                        resolve(true);
+                    } catch (e) {
+                        resolve(false);
+                    }
+                }, 'image/png');
+            });
+        }
+
         // Download PNG
         document.getElementById('downloadBtn').addEventListener('click', () => {
             const s1 = document.getElementById('streamerSelect').value;
@@ -1038,42 +1104,139 @@
         });
 
         // Copy Image to Clipboard
-        document.getElementById('copyImgBtn').addEventListener('click', () => {
-            canvas.toBlob(async (blob) => {
-                try {
-                    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-                    const label = document.getElementById('copyImgText');
-                    label.textContent = "Copied! ✓";
-                    setTimeout(() => label.textContent = "Copy Image", 2000);
-                } catch (err) {
-                    alert("Ο browser μπλόκαρε το auto-copy. Πάτα Download PNG!");
-                }
-            }, 'image/png');
+        document.getElementById('copyImgBtn').addEventListener('click', async () => {
+            const ok = await copyCanvasToClipboardSilent();
+            if (ok) {
+                const label = document.getElementById('copyImgText');
+                label.textContent = "Copied! ✓";
+                setTimeout(() => label.textContent = "Copy Image", 2000);
+            } else {
+                alert("Ο browser μπλόκαρε το auto-copy. Πάτα Download PNG!");
+            }
         });
 
         // Copy Social Caption
         document.getElementById('copyCaptionBtn').addEventListener('click', () => {
-            let caption = "";
-            if (studioMode === "schedule") {
-                const lines = scheduleSlots.map(s => `📅 ${s.day} (${s.time}) ➔ ${s.streamer} [${s.game}]`).join('\n');
-                caption = `🔥 ΕΒΔΟΜΑΔΙΑΙΟ ΠΡΟΓΡΑΜΜΑ PHOENIX FORCE 🔥\n\n${lines}\n\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
-            } else {
-                const s1 = document.getElementById('streamerSelect').value;
-                const s2 = document.getElementById('streamer2Select').value;
-                const isCollab = document.getElementById('collabToggle').checked;
-                const title = document.getElementById('titleInput').value;
-                const game = document.getElementById('gameInput').value;
-                const link = document.getElementById('linkInput').value;
-                const who = isCollab ? `${s1} × ${s2}` : s1;
-                caption = `🔥 ${who} IS LIVE! 🔥\n🎮 ${game} — ${title}\n📺 ${link}\n💬 Discord: https://discord.gg/dVAChyHX4j\n#PhoenixForce #PHX #GreekGaming #TwitchGR`;
+            navigator.clipboard.writeText(buildSocialCaption()).then(() => {
+                const btn = document.getElementById('copyCaptionBtn');
+                btn.textContent = 'Copied! ✓';
+                setTimeout(() => btn.textContent = 'Copy Caption 📝', 2000);
+            });
+        });
+
+        // 1. DIRECT DISCORD WEBHOOK AUTO-POST
+        async function postBannerToDiscord() {
+            const webhookUrl = webhookInput.value.trim();
+            const statusEl = document.getElementById('discordStatusMsg');
+            const btnText = document.getElementById('postDiscordText');
+
+            if (!webhookUrl || !webhookUrl.startsWith("https://discord.com/api/webhooks/")) {
+                document.getElementById('socialShareSection').scrollIntoView({ behavior: 'smooth' });
+                webhookInput.focus();
+                statusEl.textContent = "⚠️ Βάλε πρώτα ένα έγκυρο Discord Webhook URL!";
+                statusEl.className = "text-[11px] text-center font-semibold text-amber-400";
+                statusEl.classList.remove('hidden');
+                return;
             }
 
-            navigator.clipboard.writeText(caption).then(() => {
-                const btn = document.getElementById('copyCaptionBtn');
-                const orig = btn.innerHTML;
-                btn.innerHTML = '<span>✓</span> <span>Caption Copied!</span>';
-                setTimeout(() => btn.innerHTML = orig, 2000);
-            });
+            btnText.textContent = "Sending to Discord...";
+            statusEl.classList.add('hidden');
+
+            canvas.toBlob(async (blob) => {
+                try {
+                    const s1 = document.getElementById('streamerSelect').value;
+                    const s2 = document.getElementById('streamer2Select').value;
+                    const isCollab = document.getElementById('collabToggle').checked;
+                    const ping = document.getElementById('discordPingSelect').value;
+                    const title = document.getElementById('titleInput').value;
+                    const game = document.getElementById('gameInput').value;
+                    const time = document.getElementById('timeInput').value;
+                    const link = document.getElementById('linkInput').value;
+                    const filename = studioMode === "schedule" ? "PHX_Weekly_Schedule.png" : `PHX_${s1}.png`;
+
+                    const embedTitle = studioMode === "schedule"
+                        ? `📅 ${document.getElementById('schedTitleInput').value}`
+                        : `🔴 ${isCollab ? `${s1} × ${s2}` : s1} — ${title}`;
+
+                    const embedDesc = studioMode === "schedule"
+                        ? scheduleSlots.map(s => `• **${s.day}** (${s.time}) — **${s.streamer}** (*${s.game}*)`).join('\n')
+                        : `🎮 **Game:** ${game}\n⏰ **Time:** ${time}\n📺 **Watch:** https://${link.replace(/^https?:\/\//, '')}`;
+
+                    const payload = {
+                        username: "Phoenix Force Promo",
+                        content: ping ? `${ping} 🔥 Νέα ανακοίνωση από την **Phoenix Force**!` : "🔥 Νέα ανακοίνωση από την **Phoenix Force**!",
+                        embeds: [{
+                            title: embedTitle,
+                            description: embedDesc,
+                            color: parseInt(accentColor.replace('#', ''), 16),
+                            image: { url: `attachment://${filename}` },
+                            footer: { text: "Phoenix Force • Rise From The Ashes" }
+                        }]
+                    };
+
+                    const formData = new FormData();
+                    formData.append("payload_json", JSON.stringify(payload));
+                    formData.append("files[0]", blob, filename);
+
+                    const res = await fetch(webhookUrl, { method: "POST", body: formData });
+                    if (res.ok) {
+                        statusEl.textContent = "✅ Ανέβηκε επιτυχώς στο Discord!";
+                        statusEl.className = "text-[11px] text-center font-semibold text-green-400";
+                    } else {
+                        statusEl.textContent = `❌ Σφάλμα Discord (${res.status}). Έλεγξε το Webhook URL.`;
+                        statusEl.className = "text-[11px] text-center font-semibold text-red-400";
+                    }
+                } catch (err) {
+                    statusEl.textContent = "❌ Αποτυχία αποστολής (Network/CORS error).";
+                    statusEl.className = "text-[11px] text-center font-semibold text-red-400";
+                } finally {
+                    statusEl.classList.remove('hidden');
+                    btnText.textContent = "Post Banner Directly to Discord";
+                }
+            }, 'image/png');
+        }
+
+        document.getElementById('postDiscordBtn').addEventListener('click', postBannerToDiscord);
+        document.getElementById('quickDiscordTopBtn').addEventListener('click', postBannerToDiscord);
+
+        // 2. X (TWITTER) QUICK POST
+        document.getElementById('shareXBtn').addEventListener('click', async () => {
+            await copyCanvasToClipboardSilent();
+            const text = encodeURIComponent(buildSocialCaption());
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+            showShareToast("📋 Η εικόνα αντιγράφηκε! Πάτα Ctrl+V μέσα στο παράθυρο του X για να κολλήσει το banner.");
+        });
+
+        // 3. FACEBOOK QUICK POST
+        document.getElementById('shareFbBtn').addEventListener('click', async () => {
+            await copyCanvasToClipboardSilent();
+            await navigator.clipboard.writeText(buildSocialCaption()).catch(() => {});
+            window.open('https://www.facebook.com/', '_blank');
+            showShareToast("📋 Το banner αντιγράφηκε! Άνοιξε νέο post στο Facebook και πάτα Ctrl+V.");
+        });
+
+        // 4. NATIVE MOBILE SHARE (INSTAGRAM / TIKTOK)
+        document.getElementById('nativeShareBtn').addEventListener('click', () => {
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], "PhoenixForce_Promo.png", { type: "image/png" });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            title: "Phoenix Force Promo",
+                            text: buildSocialCaption(),
+                            files: [file]
+                        });
+                    } catch (err) { /* User cancelled share */ }
+                } else {
+                    // Desktop fallback: download PNG & copy caption
+                    const link = document.createElement('a');
+                    link.download = "PhoenixForce_IG_TikTok.png";
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    link.click();
+                    await navigator.clipboard.writeText(buildSocialCaption()).catch(() => {});
+                    showShareToast("📲 Από PC κατέβηκε το PNG & αντιγράφηκε το caption! Άνοιξέ το από κινητό για direct IG/TikTok Share Sheet.");
+                }
+            }, 'image/png');
         });
 
         // Init
